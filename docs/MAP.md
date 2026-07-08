@@ -9,8 +9,7 @@
 ## Repository Notes
 
 - `README.md`: scope, build instructions, and status.
-- `docs/repository-naming.md`: kungfu-systems paper repository naming
-  convention.
+- `docs/repository-naming.md`: Kungfu paper repository naming convention.
 - `CONTRIBUTING.md`: contribution and check requirements.
 
 ## Governance Files

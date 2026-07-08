@@ -1,6 +1,7 @@
 # Contributing
 
-This repository follows the kungfu-systems public repository baseline.
+This repository is published by Kungfu Origin Technology Limited and follows
+the Kungfu public repository baseline.
 
 ## Changes
 

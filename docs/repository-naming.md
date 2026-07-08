@@ -1,7 +1,9 @@
 # Paper Repository Naming
 
-kungfu-systems repositories should be named by product or artifact role, not by
-implementation technology.
+Kungfu repositories should be named by product or artifact role, not by
+implementation technology. The GitHub organization name may be
+`kungfu-systems`, but the publishing identity for this paper line is Kungfu
+Origin Technology Limited.
 
 Use:
 

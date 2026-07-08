@@ -8,4 +8,4 @@ Do not use it to publish:
 - non-consensual personal data;
 - proprietary runtime traces or customer data;
 - material that implies an official hosted service or certification not stated
-  by the repository maintainers.
+  by Kungfu Origin Technology Limited.
