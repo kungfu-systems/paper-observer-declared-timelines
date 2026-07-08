@@ -1,0 +1,56 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{microtype}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{amsmath}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=black,
+  citecolor=black,
+  urlcolor=black
+}
+
+\title{Observer-Declared Timelines for Real-World Agent Work}
+\author{Keren Dong\\kungfu-systems}
+\date{Draft: July 2026}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Software systems that manage real-world agent work increasingly combine facts
+from local machines, remote sessions, repositories, user interfaces, command
+line tools, model providers, and human decisions. These systems often present a
+single timeline even though the underlying facts come from multiple clocks,
+locations, and participants. This paper argues that such timelines should not
+be presented as views from nowhere. A useful timeline should declare its
+observer, accepted facts, projection policy, causal constraints, and degraded
+evidence state. We call this design rule \emph{observer-declared timelines}.
+The rule is motivated by KFD-4, a kungfu-systems procedure derived from the
+foundation that facts must not drift, trust must start from facts, and
+cooperation must start from trusted value. We define the problem, give a
+minimal model, contrast the approach with global clocks, central sequencers,
+event sourcing, distributed tracing, and CRDTs, and outline how Kungfu can use
+the rule as part of a runtime fact ledger for real-world agent work.
+\end{abstract}
+
+\input{sections/01-introduction}
+\input{sections/02-background}
+\input{sections/03-model}
+\input{sections/04-design}
+\input{sections/05-evaluation}
+\input{sections/06-related-work}
+\input{sections/07-discussion}
+\input{sections/08-conclusion}
+
+\bibliographystyle{plain}
+\bibliography{references}
+
+\end{document}

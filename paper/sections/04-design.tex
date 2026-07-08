@@ -1,0 +1,45 @@
+\section{Kungfu Design Direction}
+\label{sec:design}
+
+Kungfu is being designed as infrastructure for managing real-world work with
+agents. In this context, an observer-declared timeline is one surface of a
+broader runtime fact ledger.
+
+\subsection{Runtime fact ledger}
+
+The runtime fact ledger should preserve source-local facts, provenance,
+causal links, payload evidence, schema bindings, verification results, and
+accepted source ranges. The visible timeline is a projection over the ledger,
+not the ledger itself.
+
+This distinction matters. If storage flattens remote facts into anonymous local
+records, the product loses the ability to explain what was accepted and why. If
+the GUI presents a global-looking order without observer metadata, the user or
+agent cannot reproduce the view during recovery.
+
+\subsection{Dual-first interfaces}
+
+The same timeline contract should be usable by humans and agents. A GUI can
+show the default observer view while exposing metadata on demand. A CLI or API
+can return the same accepted facts, projection policy, and degraded evidence
+state directly. Agent-facing surfaces are not secondary integrations; they are
+first-class control surfaces for participants that may inspect the system more
+frequently than humans.
+
+\subsection{Remote work}
+
+Real-world agent work often happens on remote machines. A server-side agent may
+write facts into a remote Kungfu home while the local GUI remains the user's
+primary control plane. A useful product should support importing or syncing
+remote facts back to the local perspective without pretending that the local
+observer saw every event live. The imported timeline should declare source
+location, accepted range, freshness, and any degraded evidence.
+
+\subsection{Verification gates}
+
+KFD-4 can be used as a release or product gate for perspective-bearing
+surfaces. Passing the gate should mean that the surface exposes the observer,
+accepted facts, projection policy, causal constraints, and degraded evidence
+metadata. It should not mean that every adapter, remote source, or runtime
+payload is complete. Stronger claims require their own KFD-2-style trust
+assessment.

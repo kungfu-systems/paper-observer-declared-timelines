@@ -1,0 +1,63 @@
+\section{Observer-Declared Timeline Model}
+\label{sec:model}
+
+An observer-declared timeline is a deterministic projection over accepted
+facts from a declared perspective. The model is intentionally small; it is a
+surface contract, not a full database schema.
+
+\subsection{Facts and sources}
+
+A \emph{fact} is an event, record, manifest, receipt, payload hash, causal
+edge, or verification result that the system treats as evidence. A fact has a
+source, provenance, and a local identity. A fact source may be a local runtime,
+remote runtime, repository, release artifact, adapter, imported bundle, or
+external system.
+
+The view does not need to accept every fact the product has ever seen. It must
+declare which source ranges, heads, cursors, manifests, watermarks, or
+freshness boundaries were accepted for the current projection.
+
+\subsection{Observer}
+
+An \emph{observer} is the perspective whose view is being shown. It may be a
+human, agent, runtime location, service, or product view. The observer is not
+necessarily the author of the facts. It is the subject from whose accepted
+fact set and projection policy the timeline is derived.
+
+\subsection{Projection policy}
+
+A projection policy orders accepted facts for display, replay, export, or
+agent consumption. Causal constraints dominate projection policy: if fact
+$a$ is known to causally precede fact $b$, a valid projection must not place
+$b$ before $a$. Concurrent or causally unrelated facts may be ordered by an
+observer policy, source priority, local sequence, or deterministic
+tie-breaker, but the policy must be inspectable.
+
+\subsection{Degraded evidence}
+
+A timeline may be useful even when evidence is incomplete. Instead of hiding
+that incompleteness, the view should declare degraded states such as missing
+causality, incomplete accepted ranges, stale remote facts, redacted payloads,
+schema mismatch, unverifiable source, or unresolved conflict. A degraded view
+is preferable to an overconfident total order.
+
+\subsection{Minimal surface}
+
+The minimal observer-declared surface contains:
+
+\begin{itemize}[leftmargin=*]
+  \item a stable view identifier;
+  \item the view subject, such as timeline, history, replay, sync, ordering,
+        or mixed-source work state;
+  \item observer identity and kind;
+  \item accepted fact sources and ranges;
+  \item projection policy version, causal dominance, and tie-breaker;
+  \item causal constraints;
+  \item degraded evidence states; and
+  \item verification status.
+\end{itemize}
+
+This is close to the KFD-4 observer-perspective schema published by the KFD
+package. The schema is a vocabulary and verification boundary, not a claim that
+an adopter's runtime implementation is correct merely because it imports the
+schema.

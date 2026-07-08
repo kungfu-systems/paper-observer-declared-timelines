@@ -1,0 +1,45 @@
+\section{Introduction}
+
+Agent-facing software is moving from short, isolated prompts toward long-lived
+work that touches real files, repositories, terminals, background sessions,
+remote machines, package releases, human reviews, and product state. In that
+setting, a timeline is not merely a convenience widget. It becomes a control
+surface: it tells a human or an agent what happened, what is still pending,
+which facts are trustworthy, and where recovery should begin.
+
+The hard part is that there is usually no single authoritative vantage point.
+A local graphical interface may observe one set of facts. A command line tool
+running on a server may observe another. A build system, git repository,
+runtime tracer, and human operator each see different evidence at different
+times. If a product collapses those observations into one global-looking
+sequence without explaining the perspective, it creates an attractive but
+fragile fiction. The view may be useful in the common case, but it becomes
+difficult to audit, reproduce, or challenge when clocks disagree, remote facts
+arrive late, evidence is redacted, or causal links are incomplete.
+
+This paper proposes a design rule: timelines for mixed-source real-world agent
+work should declare their observer. A timeline view should state the observer
+whose perspective is being shown, the fact sources and ranges it has accepted,
+the projection policy that orders concurrent facts, the causal constraints that
+must not be inverted, and the degraded evidence state when the view is
+incomplete. The claim is not that there are no facts. On the contrary, the
+claim is that facts and causality become more important when no product can
+honestly claim a universal view from nowhere.
+
+The contribution is a first design paper rather than a completed empirical
+evaluation. It provides:
+
+\begin{itemize}[leftmargin=*]
+  \item a problem statement for perspective-bearing timelines in real-world
+        agent work;
+  \item a minimal observer-declared timeline model;
+  \item a mapping from the KFD foundation to timeline surfaces;
+  \item an implementation sketch for Kungfu as a runtime fact ledger; and
+  \item an evaluation plan for future product evidence.
+\end{itemize}
+
+The rest of the paper is organized as follows. Section~\ref{sec:background}
+places the problem in the context of clocks, tracing, event sourcing, and
+agent work. Section~\ref{sec:model} defines the model. Section~\ref{sec:design}
+describes the Kungfu design direction. Section~\ref{sec:evaluation} outlines
+evaluation. Section~\ref{sec:related} compares related work.

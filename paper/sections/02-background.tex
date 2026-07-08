@@ -1,0 +1,52 @@
+\section{Background and Motivation}
+\label{sec:background}
+
+\subsection{Real-world agent work}
+
+We use \emph{real-world agent work} to mean work in which agents help users
+manage concrete tasks rather than only produce isolated model outputs. Such
+work may involve local state, external repositories, remote terminals, GUI and
+TUI controls, model calls, package releases, documents, and human decisions.
+The product problem is not only how to run an agent. It is how to keep the
+state of the work legible over time.
+
+Long-lived work introduces a persistence problem. Users and agents need to ask:
+what happened, what source observed it, what evidence supports it, what is
+missing, and what action is safe now? A timeline view is a natural interface
+for these questions, but only if the view makes its own assumptions inspectable.
+
+\subsection{The global-clock temptation}
+
+Distributed systems theory has long shown that time and ordering are not
+trivial in distributed computation. Lamport's happened-before relation
+separates causal order from physical clock order \cite{lamport1978time};
+vector-clock style systems make concurrency explicit \cite{mattern1989virtual}.
+Yet many product surfaces still sort mixed-source facts primarily by wall-clock
+timestamps and present the result as a single history. That is often sufficient
+for casual logs, but it is not sufficient for recovery, audit, or cooperation
+among capable participants.
+
+The problem is sharper in agent systems because the user may not have the time
+or expertise to manually diagnose missing evidence. A local product must help
+both the human and the agent understand what the view means.
+
+\subsection{KFD foundation}
+
+The KFD foundation used by kungfu-systems can be summarized as:
+
+\begin{quote}
+KFD-1: facts must not drift.\\
+KFD-2: trust must start from facts.\\
+KFD-3: cooperation must start from trusted value.
+\end{quote}
+
+KFD-4 applies this foundation to timelines:
+
+\begin{quote}
+KFD-4: timelines must declare their observer.
+\end{quote}
+
+Under this framing, a timeline view is trustworthy only when it is grounded in
+non-drifting facts, exposes enough evidence for trust assessment, and helps
+participants cooperate through transparent value rather than hidden pressure or
+opaque authority.

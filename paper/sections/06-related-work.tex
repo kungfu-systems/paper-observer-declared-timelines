@@ -1,0 +1,42 @@
+\section{Related Work}
+\label{sec:related}
+
+\subsection{Logical and physical time}
+
+Lamport clocks and happened-before relations establish that causal order is not
+the same as physical timestamp order \cite{lamport1978time}. Vector-clock
+systems make concurrent events explicit \cite{mattern1989virtual}. The
+observer-declared timeline rule does not replace these mechanisms. It brings a
+similar discipline to product surfaces: when the product shows a timeline, it
+should expose enough perspective metadata for the ordering to be audited.
+
+\subsection{Event sourcing}
+
+Event sourcing treats state as a derivation from an append-only sequence of
+events \cite{fowler2005eventsourcing}. Observer-declared timelines share the
+idea that records matter, but differ in emphasis. The visible timeline is not
+assumed to be the authoritative event log. It is a perspective-bearing
+projection over accepted facts that may come from several sources.
+
+\subsection{Distributed tracing}
+
+Distributed tracing systems such as OpenTelemetry capture spans and causal
+relationships across services \cite{opentelemetry}. This is valuable evidence
+for runtime behavior. The proposed rule is broader at the product surface: a
+timeline may combine traces, repository facts, user decisions, release
+manifests, local files, and remote agent actions.
+
+\subsection{CRDTs and replicated state}
+
+CRDTs provide convergence properties for replicated data types under
+concurrent updates \cite{shapiro2011crdt}. Observer-declared timelines are not
+a conflict-free data structure. They are a view contract: even when underlying
+state uses CRDTs, consensus, or a central sequencer, a mixed-source product
+timeline should still declare what perspective the user or agent is seeing.
+
+\subsection{Human-computer and human-agent cooperation}
+
+Engelbart framed computing as augmenting human intellect rather than merely
+automating tasks \cite{engelbart1962augmenting}. Real-world agent work extends
+that problem. The product must support cooperation between human and agent
+participants that observe, remember, and act through different surfaces.

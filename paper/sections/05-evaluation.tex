@@ -1,0 +1,41 @@
+\section{Evaluation Plan}
+\label{sec:evaluation}
+
+This draft does not yet report empirical results. The planned evaluation should
+test whether observer-declared timelines improve recovery, auditability, and
+agent cooperation in realistic workflows.
+
+\subsection{Case studies}
+
+\begin{itemize}[leftmargin=*]
+  \item \textbf{Remote agent work.} An agent performs a task on a server while
+        the user later reviews the work from a local GUI.
+  \item \textbf{Multi-machine sync.} Facts from local and remote runtimes are
+        imported with different freshness boundaries and causal completeness.
+  \item \textbf{Replay and debugging.} A user or agent reconstructs why a task
+        reached a given state after partial failure.
+  \item \textbf{Release evidence.} Build and release facts are shown as a
+        timeline with source provenance and verification status.
+\end{itemize}
+
+\subsection{Measures}
+
+Potential measures include:
+
+\begin{itemize}[leftmargin=*]
+  \item recovery time after interruption;
+  \item number of hidden-ordering assumptions discovered during audit;
+  \item ability for an agent to reproduce a displayed timeline from exported
+        metadata;
+  \item correctness of causal-order preservation under clock skew;
+  \item rate of degraded-evidence states surfaced rather than silently hidden;
+        and
+  \item user and agent ability to decide the next safe action from the view.
+\end{itemize}
+
+\subsection{Artifacts}
+
+Evaluation artifacts should include fixture ledgers, projected timeline
+exports, KFD-4 observer-perspective declarations, and KFD-2 trust assessments.
+The paper should not rely on private operational logs for evidence unless they
+are sanitized, permissioned, and explicitly marked.
