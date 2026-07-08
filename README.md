@@ -14,12 +14,15 @@ multi-agent, mixed-source systems should declare their observer, accepted
 facts, projection policy, causal constraints, and degraded evidence state
 instead of presenting a view from nowhere.
 
+Publisher: Kungfu Origin Technology Limited.
+Contact: Keren Dong <keren.dong@kungfu.link>.
+
 ## Repository Naming
 
-This repository introduces the `paper-*` prefix for kungfu-systems research
-artifacts. Use `paper-<short-subject>` for one paper or tightly scoped paper
-series. The prefix names the role of the repository, not the current toolchain;
-LaTeX is an implementation detail.
+This repository introduces the `paper-*` prefix for Kungfu research artifacts.
+Use `paper-<short-subject>` for one paper or tightly scoped paper series. The
+prefix names the role of the repository, not the current toolchain; LaTeX is an
+implementation detail.
 
 See [`docs/repository-naming.md`](docs/repository-naming.md).
 

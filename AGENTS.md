@@ -1,6 +1,7 @@
 # Agent Entry
 
-This repository contains LaTeX source for a kungfu-systems research paper.
+This repository contains LaTeX source for a Kungfu Origin Technology Limited
+research paper.
 
 Start here:
 
