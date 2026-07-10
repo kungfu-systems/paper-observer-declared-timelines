@@ -7,11 +7,11 @@ name = "paper-observer-declared-timelines"
 [publication]
 kind = "paper"
 title = "Observer-Declared Timelines for Real-World Agent Work"
-version = "0.1.0-alpha.2"
+version = "0.1.0-alpha.3"
 abstract = "A design paper for observer-declared timeline views in multi-machine, multi-agent, mixed-source systems."
 authors = [ "Keren Dong" ]
-primary_artifact = "_build/main.pdf"
-artifact_paths = [ "_build/main.pdf" ]
+primary_artifact = "_build/observer-declared-timelines.pdf"
+artifact_paths = [ "_build/observer-declared-timelines.pdf" ]
 metadata_paths = [ "README.md", "docs/MAP.md" ]
 source_paths = [ "paper", "README.md", "LICENSE", "Makefile" ]
 site_consumers = [ "papers.libkungfu.dev" ]
@@ -30,7 +30,7 @@ registry_path = ".buildchain/publication/publication-registry.json"
 type = "latex-docker"
 image = "ghcr.io/kungfu-systems/build-images/latex-pdf-builder"
 digest = "sha256:c20f3809e96836c1c78e97c76939d12f1de3fed0ea9b7c40c43332ec2ea480f8"
-command = "mkdir -p _build && cd paper && latexmk -pdf -outdir=../_build main.tex"
+command = "mkdir -p _build && cd paper && latexmk -pdf -outdir=../_build main.tex && mv ../_build/main.pdf ../_build/observer-declared-timelines.pdf"
 
 [publish]
 kind = "npm-paper-package"
