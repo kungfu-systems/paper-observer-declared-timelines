@@ -26,20 +26,27 @@ incomplete. The claim is not that there are no facts. On the contrary, the
 claim is that facts and causality become more important when no product can
 honestly claim a universal view from nowhere.
 
-The contribution is a first design paper rather than a completed empirical
-evaluation. It provides:
+This paper moves from a design-only proposal toward an implemented systems
+argument. It makes four contributions:
 
 \begin{itemize}[leftmargin=*]
   \item a problem statement for perspective-bearing timelines in real-world
         agent work;
-  \item a minimal observer-declared timeline model;
-  \item a mapping from the KFD foundation to timeline surfaces;
-  \item an implementation sketch for Kungfu as a runtime fact ledger; and
-  \item an evaluation plan for future product evidence.
+  \item a minimal observer-declared timeline model in which accepted Episodes
+        provide bounded causal inputs and observer policy selects a
+        deterministic order without overriding known causality;
+  \item a mapping from the KFD foundation and KFD-4 surface contract to the
+        facts, policies, degradation, and verification required by a timeline;
+  \item an implemented Kungfu substrate that separates append-only authority,
+        typed derivation, rebuildable projection, and edge presentation; and
+  \item preliminary semantic, scale, contention, recovery, and projection
+        evidence, together with an explicit account of what the current
+        prototype does not yet establish.
 \end{itemize}
 
 The rest of the paper is organized as follows. Section~\ref{sec:background}
 places the problem in the context of clocks, tracing, event sourcing, and
 agent work. Section~\ref{sec:model} defines the model. Section~\ref{sec:design}
-describes the Kungfu design direction. Section~\ref{sec:evaluation} outlines
-evaluation. Section~\ref{sec:related} compares related work.
+describes the Kungfu prototype. Section~\ref{sec:evaluation} reports preliminary
+evidence and the remaining evaluation plan. Section~\ref{sec:related} compares
+related work.

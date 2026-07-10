@@ -9,5 +9,15 @@ Observer-declared timelines offer a practical alternative. A product can keep
 facts and causality load-bearing while admitting that every useful view is
 projected from a declared perspective. The design rule is small, but it has
 consequences for storage, sync, GUI, CLI, API, export, release evidence, and
-agent onboarding. Future work should validate the rule inside Kungfu and use
-that implementation evidence to strengthen the paper.
+agent onboarding.
+
+Kungfu's Episode prototype now supplies preliminary implementation evidence for
+the substrate beneath this rule. It separates append-only authority from typed
+derivation and rebuildable projection, makes causal closure and missing evidence
+inspectable, and qualifies bounded behavior under semantic, scale, recovery,
+and contention workloads. The results do not yet validate the complete
+observer-relative multi-machine view. That next step requires first-class
+observer policy, accepted ranges, reproducible timeline export, projection-level
+fsck, and experiments in which humans and agents recover from the same declared
+perspective. Keeping that boundary explicit is part of the proposal itself:
+trust in a timeline should start from the facts that are actually available.

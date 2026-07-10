@@ -49,4 +49,19 @@ KFD-4: timelines must declare their observer.
 Under this framing, a timeline view is trustworthy only when it is grounded in
 non-drifting facts, exposes enough evidence for trust assessment, and helps
 participants cooperate through transparent value rather than hidden pressure or
-opaque authority.
+opaque authority \cite{kfd2026observer}.
+
+\subsection{Why a causal object is needed}
+
+A projection rule alone does not define the unit that can be accepted, moved,
+verified, or rejected. Raw journal pages are physical append blocks; sessions
+and runs are product vocabulary; individual frames are too small to provide a
+portable closure boundary. Kungfu therefore introduces an \emph{Episode}: a
+bounded causal segment containing the manifest, frame references, content
+commitments, provenance, schemas, dependencies, and verification evidence
+needed to inspect one unit of work \cite{kungfu2026episode}.
+
+Episodes do not make the timeline absolute. They make its inputs explicit. A
+view can name which Episodes it accepted, preserve their internal and declared
+cross-Episode causality, and then apply observer policy only where the causal
+facts leave an ordering choice.
