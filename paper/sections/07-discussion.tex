@@ -23,8 +23,32 @@ fresh, or causally valid must provide product-specific evidence. This is why
 KFD-4 should be assessed through KFD-2-style trust claims when used as a
 release or product gate.
 
-\subsection{Research status}
+\subsection{What the prototype establishes}
 
-This is an initial design paper. The next version should replace design
-intentions with concrete Kungfu implementation evidence: exported observer
-perspectives, replay fixtures, failure cases, and measured recovery outcomes.
+The current prototype establishes that the proposed view can stand on a
+nontrivial fact substrate: bounded causal objects, append-only authority,
+independent semantic checking, explicit degradation, derived projection drift,
+recovery, and portable evidence. It also demonstrates that qualification can
+remain honest under incomplete implementation by recording an unexercised
+capability dimension rather than silently passing it.
+
+It does not establish that observer declaration by itself improves human
+recovery time or agent decision quality. Nor does it establish a distributed
+consistency protocol, conflict resolution between independently written
+authority roots, or a total order acceptable to every observer.
+
+\subsection{Implementation and evidence limits}
+
+The numeric baseline is metadata-only, uses a single reported seed at the
+largest scale, and does not cover realistic payload volume, deep dependency
+DAGs, distributed writers, long soak, storage exhaustion, or every publication
+crash point. The current safe-capability report is incomplete. Most importantly,
+the first-class observer policy object, accepted-range synchronization,
+multi-source projection command, exported observer declaration, and
+projection-level causal fsck have not yet landed.
+
+These are not incidental implementation details. They are the remaining bridge
+between a qualified fact substrate and an evaluated observer-declared timeline.
+Future versions should add exported observer perspectives, replay fixtures,
+multi-machine failure cases, deterministic reproduction experiments, and
+measured human/agent recovery outcomes.

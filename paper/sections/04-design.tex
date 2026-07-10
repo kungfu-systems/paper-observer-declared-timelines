@@ -1,21 +1,71 @@
-\section{Kungfu Design Direction}
+\section{Kungfu Prototype and Design}
 \label{sec:design}
 
-Kungfu is being designed as infrastructure for managing real-world work with
-agents. In this context, an observer-declared timeline is one surface of a
-broader runtime fact ledger.
+Kungfu is infrastructure for managing real-world work with agents. In this
+context, an observer-declared timeline is one surface of a broader runtime fact
+ledger. The current implementation establishes the Episode substrate beneath
+that surface; it does not yet implement the complete multi-machine observer
+projection.
 
 \subsection{Runtime fact ledger}
 
-The runtime fact ledger should preserve source-local facts, provenance,
-causal links, payload evidence, schema bindings, verification results, and
-accepted source ranges. The visible timeline is a projection over the ledger,
-not the ledger itself.
+The runtime fact ledger preserves source-local facts, provenance, causal links,
+payload evidence, schema bindings, and verification results. Future sync views
+also need accepted source ranges and freshness boundaries. The visible timeline
+is a projection over the ledger, not the ledger itself.
 
 This distinction matters. If storage flattens remote facts into anonymous local
 records, the product loses the ability to explain what was accepted and why. If
 the GUI presents a global-looking order without observer metadata, the user or
 agent cannot reproduce the view during recovery.
+
+\subsection{Implemented Episode path}
+
+The Episode prototype separates five layers \cite{kungfu2026episode}:
+
+\begin{enumerate}[leftmargin=*]
+  \item An append-only yijinjing manifest journal stores fixed-layout Episode
+        lifecycle, frame, reference, and dependency records as authority.
+  \item One typed C++ fold derives the canonical current Episode view. Python,
+        Node, CLI, and GUI edges do not define independent Episode semantics.
+  \item Content-addressed immutable storage resolves payload and schema
+        references, with hashes and lengths verified before use.
+  \item Structural fsck checks manifest integrity, causal closure, dependencies,
+        content evidence, lifecycle state, and projection drift. Recovery and
+        repair append evidence instead of silently rewriting verified history.
+  \item A SQLite Episode projection accelerates query but remains rebuildable
+        from the journal. Absence or drift degrades the projection without
+        promoting the database to authority.
+\end{enumerate}
+
+This architecture provides the accepted-object and evidence substrate required
+by an observer-declared timeline. It also makes partial failure visible at the
+Episode boundary: lifecycle, health, and operation capability are separate
+dimensions.
+
+\subsection{KFD-4 implementation map}
+
+Table~\ref{tab:kfd4-map} distinguishes implemented evidence from the remaining
+observer-view work.
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.22\linewidth}>{\raggedright\arraybackslash}p{0.34\linewidth}>{\raggedright\arraybackslash}p{0.34\linewidth}}
+\toprule
+KFD-4 field & Current substrate & Remaining view work \\
+\midrule
+Observer & Source and writer-location provenance & First-class observer and stable view identifier \\
+Accepted facts & Episode manifests, refs, dependencies, export/import evidence & Multi-source accepted ranges, watermarks, and freshness \\
+Projection policy & Deterministic typed fold and rebuildable Episode query projection & Versioned cross-source ordering policy and tie-breaker \\
+Causal constraints & In-Episode closure and declared Episode dependencies & Projection-level enforcement over a selected multi-source set \\
+Degraded evidence & Structured fsck issues, missing evidence, stale projection, recovery paths & View-level degradation for incomplete ranges and policy knowledge \\
+Verification & Semantic oracle, fsck, Trust Report, CI gate & Exported observer declaration and projection-level fsck \\
+\bottomrule
+\end{tabular}
+\caption{Current Kungfu evidence mapped to the KFD-4 observer-perspective contract.}
+\label{tab:kfd4-map}
+\end{table}
 
 \subsection{Dual-first interfaces}
 
@@ -43,3 +93,8 @@ accepted facts, projection policy, causal constraints, and degraded evidence
 metadata. It should not mean that every adapter, remote source, or runtime
 payload is complete. Stronger claims require their own KFD-2-style trust
 assessment.
+
+The Episode qualification report is an example of that evidence discipline. It
+records source revision, profile, workload, semantic dimensions, violations,
+performance observations, and known gaps. It is evidence for a bounded Episode
+profile, not an automatic KFD-4 certificate for every timeline surface.

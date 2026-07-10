@@ -1,11 +1,104 @@
-\section{Evaluation Plan}
+\section{Preliminary Evaluation}
 \label{sec:evaluation}
 
-This draft does not yet report empirical results. The planned evaluation should
-test whether observer-declared timelines improve recovery, auditability, and
-agent cooperation in realistic workflows.
+The present evidence evaluates the Episode fact substrate needed by an
+observer-declared timeline. It does not yet evaluate a complete multi-machine
+observer view. We separate those claims so implementation progress cannot be
+mistaken for an end-to-end result.
 
-\subsection{Case studies}
+\subsection{Questions and method}
+
+The preliminary evaluation asks:
+
+\begin{itemize}[leftmargin=*]
+  \item \textbf{RQ1:} Does the Episode path preserve lifecycle, causal object,
+        content, dependency, recovery, and portable-identity semantics?
+  \item \textbf{RQ2:} Does authority remain correct as the retained Episode
+        population and physical-writer contention increase?
+  \item \textbf{RQ3:} Can a derived Episode projection become absent or stale,
+        be detected, and converge after rebuild without changing authority?
+  \item \textbf{RQ4:} Can an exported observer declaration reproduce a
+        multi-machine timeline and preserve causality under clock skew? This
+        question remains future work.
+\end{itemize}
+
+Kungfu's qualification harness drives the public Python storage service backed
+by the C++ Episode implementation. A structurally independent Python oracle
+models abstract lifecycle and evidence transitions without importing Kungfu or
+reading journal bytes. The recurring semantic slice first exhausts a 48-state
+cross-product of payload presence, direct dependency presence, terminal state,
+and repair choice. It then compares production observations for interrupted
+publication, useful degradation, monotonic repair, dependency containment,
+content integrity, projection rebuild, and export/import identity. The report
+marks a dimension as \texttt{passed}, \texttt{failed}, or
+\texttt{not\_exercised}; unsupported checks are not converted into zero
+violations \cite{kungfu2026episode}.
+
+The latest semantic-gate revision used for this paper is
+\texttt{e651130fbbbb}; its public repository
+validation workflow completed successfully.\footnote{\href{https://github.com/kungfu-systems/kungfu/actions/runs/29078315410}{Public validation run 29078315410.}}
+The numeric scale baseline below
+comes from the separately recorded clean development revision
+\texttt{b6961891731b} on
+\texttt{darwin/arm64}, Node 22.22.3, 20 logical CPUs, and 128 GiB RAM. The
+workload is metadata-only and uses one reported seed for the largest tables.
+
+\subsection{Semantic and projection evidence}
+
+The current smoke profile requires lifecycle safety, useful degradation, repair
+monotonicity, direct dependency containment, projection derivation, publication
+recovery, content integrity, and portable identity. The projection case observes
+an absent SQLite projection, rebuilds it, detects it as stale after new authority
+records, and rebuilds it to a current state. Authority remains the journal
+throughout.
+
+The production Episode fold does not yet emit the complete operation-level safe
+capability report required by the atomic-safety design. Consequently,
+\texttt{capability\_soundness} is explicitly
+\texttt{not\_exercised} rather than passed. This is a useful negative result:
+the qualification vocabulary exposes a missing proof instead of allowing an
+edge layer to invent one.
+
+\subsection{Scale and contention evidence}
+
+The metadata accumulation result is shown in Table~\ref{tab:episode-scale}.
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabular}{rrrrrr}
+\toprule
+Episodes & Ingest/s & List & Fsck & Inspect p95 & RSS \\
+\midrule
+1,000 & 1,670 & 40 ms & 9 ms & 1.1 ms & 54 MB \\
+10,000 & 937 & 444 ms & 82 ms & 11.0 ms & 115 MB \\
+100,000 & 316 & 4.20 s & 804 ms & 87.5 ms & 698 MB \\
+\bottomrule
+\end{tabular}
+\caption{Metadata-only Episode accumulation baseline.}
+\label{tab:episode-scale}
+\end{table}
+
+At 100,000 retained Episodes, all 100,000 objects and 200,000 semantic Episode
+records matched after fresh-process readback. Clean recovery found no
+interrupted Episode. The physical manifest contained 200,002 frames; the two
+additional page-control frames were accounted for separately rather than
+misclassified as semantic records.
+
+The contention profile kept total work fixed at 10,000 Episodes while using
+one, two, five, and ten physical writers. Aggregate ingest ranged from 1,143 to
+1,230 Episodes/s. At ten writers, 8,252 explicit writer-busy results were
+retried; none exhausted the retry bound, and the run reported no count,
+readback, fsck, recovery, unexpected-error, or progress-timeout violation.
+
+These observations support a bounded correctness claim, not a capacity promise.
+Throughput did not scale with writer count, and whole-manifest list and inspect
+cost increased visibly with retained population. A long-lived writer queue and
+bounded or indexed reads remain engineering priorities.
+
+\subsection{Remaining end-to-end evaluation}
+
+The observer-declared timeline claim still requires the following case studies:
 
 \begin{itemize}[leftmargin=*]
   \item \textbf{Remote agent work.} An agent performs a task on a server while
@@ -18,9 +111,7 @@ agent cooperation in realistic workflows.
         timeline with source provenance and verification status.
 \end{itemize}
 
-\subsection{Measures}
-
-Potential measures include:
+The corresponding measures include:
 
 \begin{itemize}[leftmargin=*]
   \item recovery time after interruption;
@@ -33,9 +124,12 @@ Potential measures include:
   \item user and agent ability to decide the next safe action from the view.
 \end{itemize}
 
-\subsection{Artifacts}
+Required artifacts include fixture ledgers, selected Episode sets, projected
+timeline exports, KFD-4 observer-perspective declarations, KFD-2 trust
+assessments, and machine-readable Episode Trust Reports. The evaluation must
+include clock skew, late remote evidence, missing accepted ranges, missing
+causal links, policy-version mismatch, and deterministic reproduction by both a
+human-facing and an agent-facing surface.
 
-Evaluation artifacts should include fixture ledgers, projected timeline
-exports, KFD-4 observer-perspective declarations, and KFD-2 trust assessments.
 The paper should not rely on private operational logs for evidence unless they
 are sanitized, permissioned, and explicitly marked.

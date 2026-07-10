@@ -8,6 +8,7 @@
 \usepackage{enumitem}
 \usepackage{booktabs}
 \usepackage{amsmath}
+\usepackage{array}
 
 \hypersetup{
   colorlinks=true,
@@ -33,12 +34,21 @@ locations, and participants. This paper argues that such timelines should not
 be presented as views from nowhere. A useful timeline should declare its
 observer, accepted facts, projection policy, causal constraints, and degraded
 evidence state. We call this design rule \emph{observer-declared timelines}.
-The rule is motivated by KFD-4, a Kungfu procedure derived from the
-foundation that facts must not drift, trust must start from facts, and
-cooperation must start from trusted value. We define the problem, give a
-minimal model, contrast the approach with global clocks, central sequencers,
-event sourcing, distributed tracing, and CRDTs, and outline how Kungfu can use
-the rule as part of a runtime fact ledger for real-world agent work.
+The rule is motivated by KFD-4, a Kungfu procedure derived from the foundation
+that facts must not drift, trust must start from facts, and cooperation must
+start from trusted value. We define a timeline as a deterministic projection
+over accepted \emph{Episodes}: bounded causal objects whose manifests, evidence,
+dependencies, and verification state can be inspected independently. We then
+report an implementation of the Episode fact substrate in Kungfu: append-only
+journal authority, a typed fold, content-addressed references, structural
+verification, a rebuildable SQLite projection, recovery, and qualification
+gates. In a metadata-only development baseline, the implementation retained and
+re-read 100,000 Episodes and 200,000 semantic records without a correctness
+violation; a ten-writer workload also completed without exhausted retries or
+correctness violations. These results establish preliminary evidence for the
+fact substrate, not an end-to-end validation of observer-relative multi-machine
+projection. First-class observer policy, accepted-range sync, and
+projection-level causal verification remain future work.
 \end{abstract}
 
 \input{sections/01-introduction}

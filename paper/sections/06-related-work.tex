@@ -16,7 +16,9 @@ Event sourcing treats state as a derivation from an append-only sequence of
 events \cite{fowler2005eventsourcing}. Observer-declared timelines share the
 idea that records matter, but differ in emphasis. The visible timeline is not
 assumed to be the authoritative event log. It is a perspective-bearing
-projection over accepted facts that may come from several sources.
+projection over accepted facts that may come from several sources. Episodes add
+a bounded causal and verification object above physical append blocks, while
+keeping projections rebuildable from authority.
 
 \subsection{Distributed tracing}
 
@@ -24,7 +26,9 @@ Distributed tracing systems such as OpenTelemetry capture spans and causal
 relationships across services \cite{opentelemetry}. This is valuable evidence
 for runtime behavior. The proposed rule is broader at the product surface: a
 timeline may combine traces, repository facts, user decisions, release
-manifests, local files, and remote agent actions.
+manifests, local files, and remote agent actions. An Episode may contain trace
+evidence, but its boundary is defined by causal closure and portable trust rather
+than by one tracing backend or span vocabulary.
 
 \subsection{CRDTs and replicated state}
 
