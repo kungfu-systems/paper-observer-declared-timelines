@@ -45,5 +45,8 @@ type = "toml"
 path = ".buildchain/buildchain.toml"
 key = "publication.version"
 
+[lifecycle.install]
+command = "true"
+
 [lifecycle.verify]
 command = "make check"
