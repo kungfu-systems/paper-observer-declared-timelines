@@ -2,8 +2,8 @@
 \label{sec:model}
 
 An observer-declared timeline is a deterministic projection over accepted
-facts from a declared perspective. The model is intentionally small; it is a
-surface contract, not a full database schema.
+causal objects from a declared perspective. The model is intentionally small;
+it is a surface and verification contract, not a physical database schema.
 
 \subsection{Facts and sources}
 
@@ -17,6 +17,28 @@ The view does not need to accept every fact the product has ever seen. It must
 declare which source ranges, heads, cursors, manifests, watermarks, or
 freshness boundaries were accepted for the current projection.
 
+\subsection{Episodes and causal closure}
+
+Let an Episode be
+
+\[
+E_i = (F_i, \prec_i, D_i, M_i),
+\]
+
+where $F_i$ is its fact set, $\prec_i$ is the known causal relation inside the
+Episode, $D_i$ is its declared dependency set over other Episodes, and $M_i$ is
+the manifest and verification evidence that defines the object. Frame-level
+causal edges must close inside $E_i$. Influence from another Episode must be
+represented by $D_i$, rather than by an undeclared edge that escapes the object
+boundary.
+
+For one view, the accepted set $A$ contains selected Episodes plus the source
+ranges, heads, watermarks, and freshness boundaries under which they were
+accepted. The induced causal relation $\prec_A$ is the union of each
+$\prec_i$ and the dependency edges declared by $D_i$. If required evidence is
+missing, $A$ remains inspectable but carries degraded evidence rather than a
+fabricated closure claim.
+
 \subsection{Observer}
 
 An \emph{observer} is the perspective whose view is being shown. It may be a
@@ -26,12 +48,30 @@ fact set and projection policy the timeline is derived.
 
 \subsection{Projection policy}
 
-A projection policy orders accepted facts for display, replay, export, or
-agent consumption. Causal constraints dominate projection policy: if fact
-$a$ is known to causally precede fact $b$, a valid projection must not place
-$b$ before $a$. Concurrent or causally unrelated facts may be ordered by an
-observer policy, source priority, local sequence, or deterministic
-tie-breaker, but the policy must be inspectable.
+A projection policy $P$ orders accepted facts for display, replay, export, or
+agent consumption. For observer $O$, the visible timeline is
+
+\[
+T_{O,P} = \Pi_{O,P}(A, \prec_A).
+\]
+
+The projection $\Pi$ must be deterministic and must produce a linear extension
+of every known causal constraint. If $a \prec_A b$, a valid projection cannot
+place $b$ before $a$. Concurrent or causally unrelated facts may be ordered by
+observer policy, source priority, local sequence, or a deterministic
+tie-breaker, but that policy must be inspectable and versioned. When no valid
+total order can be supported by the accepted evidence, the result is degraded
+or rejected rather than silently repaired with wall-clock order.
+
+\subsection{Authority and derived views}
+
+The accepted facts and their manifests are authority inputs. A folded current
+view, database index, GUI timeline, or exported ordering is derived. Deleting
+and rebuilding a derived projection must not change authority, and disagreement
+between a projection and authority must be reported as drift. This separation
+is necessary for an observer declaration to be meaningful: an observer states
+which authority facts and policy produced the view, not merely which cached rows
+were displayed.
 
 \subsection{Degraded evidence}
 
@@ -40,6 +80,13 @@ that incompleteness, the view should declare degraded states such as missing
 causality, incomplete accepted ranges, stale remote facts, redacted payloads,
 schema mismatch, unverifiable source, or unresolved conflict. A degraded view
 is preferable to an overconfident total order.
+
+Degradation is operation-sensitive. Missing payload bytes may prevent replay
+while still allowing manifest inspection; a stale index may prevent indexed
+query while still allowing rebuild; a missing dependency may prevent a complete
+projection while preserving the local Episode facts. A single global health bit
+is therefore weaker than a report that names the evidence gap and the safe
+capabilities that remain.
 
 \subsection{Minimal surface}
 
@@ -58,6 +105,6 @@ The minimal observer-declared surface contains:
 \end{itemize}
 
 This is close to the KFD-4 observer-perspective schema published by the KFD
-package. The schema is a vocabulary and verification boundary, not a claim that
-an adopter's runtime implementation is correct merely because it imports the
-schema.
+package \cite{kfd2026observer}. The schema is a vocabulary and verification
+boundary, not a claim that an adopter's runtime implementation is correct merely
+because it imports the schema.
