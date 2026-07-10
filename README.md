@@ -59,8 +59,7 @@ If a TeX toolchain is installed:
 make pdf
 ```
 
-The public PDF artifact is written to
-`_build/observer-declared-timelines-for-real-world-agent-work.pdf`.
+The public PDF artifact is written to `_build/observer-declared-timelines.pdf`.
 
 Source-only checks:
 
