@@ -7,7 +7,7 @@ name = "paper-observer-declared-timelines"
 [publication]
 kind = "paper"
 title = "Observer-Declared Timelines for Real-World Agent Work"
-version = "0.1.0-alpha.1"
+version = "0.1.0-alpha.2"
 abstract = "A design paper for observer-declared timeline views in multi-machine, multi-agent, mixed-source systems."
 authors = ["Keren Dong"]
 primary_artifact = "_build/main.pdf"
