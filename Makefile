@@ -1,4 +1,4 @@
-PDF_NAME := observer-declared-timelines-for-real-world-agent-work.pdf
+PDF_NAME := observer-declared-timelines.pdf
 
 .PHONY: check pdf clean
 
