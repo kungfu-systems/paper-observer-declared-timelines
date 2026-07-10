@@ -7,8 +7,8 @@ name = "paper-observer-declared-timelines"
 [publication]
 kind = "paper"
 title = "Observer-Declared Timelines for Real-World Agent Work"
-version = "0.1.0-alpha.3"
-abstract = "A design paper for observer-declared timeline views in multi-machine, multi-agent, mixed-source systems."
+version = "0.1.0-alpha.4"
+abstract = "A systems design paper for observer-declared timelines, grounded in the Kungfu Episode substrate and bounded qualification evidence."
 authors = [ "Keren Dong" ]
 primary_artifact = "_build/observer-declared-timelines.pdf"
 artifact_paths = [ "_build/observer-declared-timelines.pdf" ]
