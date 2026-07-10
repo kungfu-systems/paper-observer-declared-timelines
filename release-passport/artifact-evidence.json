@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "contract": "kungfu-buildchain-artifact-evidence",
+  "repository": "kungfu-systems/paper-observer-declared-timelines",
+  "release": {
+    "tag": "v0.1.0-alpha.3",
+    "sourceSha": "fc8fbd90b1b38acc67c18ffa8187b1378a14e2c7"
+  },
+  "generatedAt": "2026-07-10T07:09:16.340Z",
+  "runner": {
+    "kind": "github-hosted",
+    "os": "Linux",
+    "arch": "X64",
+    "labels": [],
+    "image": "ubuntu24"
+  },
+  "workflow": {
+    "name": "Paper Release",
+    "runId": "29075770840",
+    "runAttempt": "1",
+    "url": "https://github.com/kungfu-systems/paper-observer-declared-timelines/actions/runs/29075770840"
+  },
+  "artifacts": []
+}

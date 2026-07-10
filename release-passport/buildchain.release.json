@@ -1,0 +1,403 @@
+{
+  "schemaVersion": 1,
+  "contract": "kungfu-buildchain-release-passport",
+  "generatedAt": "2026-07-10T07:09:16.343Z",
+  "surfaceTimestampPolicy": {
+    "generatedAt": "2026-07-10T07:09:16.343Z",
+    "publishedAt": "2026-07-10T07:09:16.343Z",
+    "reproducible": true,
+    "timestampPolicy": "ci-injected",
+    "deterministicInputs": [
+      "release.sourceSha",
+      "release.releaseSha",
+      "release.releaseMaterialSha",
+      "artifact-evidence.json",
+      "publish evidence",
+      "release-state transaction",
+      "sourceRevision",
+      "sourceDateEpoch",
+      "package content",
+      "declared Buildchain surface manifest contract"
+    ],
+    "sourceDateEpoch": "0",
+    "sourceRevision": "fc8fbd90b1b38acc67c18ffa8187b1378a14e2c7",
+    "timestampPolicyDetails": {
+      "contract": "kungfu-buildchain-surface-timestamp-policy",
+      "timestampFields": [
+        "generatedAt",
+        "publishedAt",
+        "surfaceTimestampPolicy.generatedAt",
+        "surfaceTimestampPolicy.publishedAt"
+      ],
+      "timestampFieldsParticipateInArtifactDigest": true,
+      "artifactDigestScope": "release passport JSON and release evidence bundle",
+      "note": "Human-readable timestamps are separate from reproducibility inputs; do not infer reproducibility from epoch timestamps."
+    }
+  },
+  "product": {
+    "name": "Observer-Declared Timelines",
+    "repository": "kungfu-systems/paper-observer-declared-timelines",
+    "mechanism": "product-mechanism.json"
+  },
+  "release": {
+    "tag": "v0.1.0-alpha.3",
+    "publicTag": "v0.1.0-alpha.3",
+    "internalTag": "v0.1.0-alpha.3",
+    "internalVersion": "0.1.0-alpha.3",
+    "publishedVersion": "0.1.0-alpha.3",
+    "versionLabel": "0.1.0-alpha.3",
+    "line": "v0.1",
+    "sourceSha": "fc8fbd90b1b38acc67c18ffa8187b1378a14e2c7",
+    "channel": "alpha",
+    "targetRef": "alpha/v0/v0.1",
+    "releaseSha": "fc8fbd90b1b38acc67c18ffa8187b1378a14e2c7",
+    "releaseMaterialSha": "fc8fbd90b1b38acc67c18ffa8187b1378a14e2c7",
+    "builtSourceSha": "",
+    "builtSourceTreeSha": "",
+    "promotionChannelSha": "",
+    "promotionChannelTreeSha": "",
+    "publishToolingSha": "fc8fbd90b1b38acc67c18ffa8187b1378a14e2c7",
+    "releaseStateRef": "refs/heads/buildchain/release-state/0-1-0-alpha-3",
+    "releaseStateSha": "",
+    "package": {
+      "name": "@kungfu-tech/paper-observer-declared-timelines",
+      "version": "0.1.0-alpha.3"
+    },
+    "exactRef": "refs/tags/v0.1.0-alpha.3"
+  },
+  "workflow": {
+    "name": "Paper Release",
+    "runId": "29075770840",
+    "runAttempt": "1",
+    "url": "https://github.com/kungfu-systems/paper-observer-declared-timelines/actions/runs/29075770840"
+  },
+  "runnerPolicy": {
+    "productionDefault": "github-hosted",
+    "compatibilityFixture": "self-hosted",
+    "note": "Runner facts are recorded in artifact evidence; the protocol does not require self-hosted runners."
+  },
+  "trustedPublishing": {
+    "provider": "npm",
+    "enabled": true,
+    "auth": "trusted-publishing",
+    "workflowRunId": "29075770840",
+    "workflowRunAttempt": "1",
+    "evidence": ""
+  },
+  "transaction": {
+    "id": "9bb72cef67f5910e5d35e1daaea1f85dfa78dde4dba3329ea629891e2416df4f",
+    "version": "0.1.0-alpha.3",
+    "state": "complete",
+    "previousState": "finalizing",
+    "exactTag": "v0.1.0-alpha.3",
+    "releaseSha": "fc8fbd90b1b38acc67c18ffa8187b1378a14e2c7",
+    "releaseMaterialSha": "fc8fbd90b1b38acc67c18ffa8187b1378a14e2c7",
+    "stateRef": "buildchain/release-state/0-1-0-alpha-3",
+    "statePath": "/home/runner/work/paper-observer-declared-timelines/paper-observer-declared-timelines/.buildchain/release-state/v0.1.0-alpha.3.json",
+    "stateSha": "",
+    "evidencePath": "/home/runner/work/paper-observer-declared-timelines/paper-observer-declared-timelines/.buildchain/release-evidence/v0.1.0-alpha.3/evidence.json",
+    "updatedAt": "2026-07-10T07:09:14.336Z",
+    "result": {
+      "command": "finalize",
+      "validation": {
+        "valid": true,
+        "errors": []
+      }
+    }
+  },
+  "buildSummary": {
+    "path": "../paper-release/build-summary.json",
+    "sha256": "eac4d96f08b446d643fc58f65b843f8567d52134553d3107ef84ecc65c5ed4a3",
+    "fields": {
+      "schemaVersion": 1,
+      "contract": "kungfu-buildchain-paper-release-build-summary",
+      "repository": "kungfu-systems/paper-observer-declared-timelines",
+      "sourceSha": "fc8fbd90b1b38acc67c18ffa8187b1378a14e2c7",
+      "package": {
+        "name": "@kungfu-tech/paper-observer-declared-timelines",
+        "version": "0.1.0-alpha.3"
+      },
+      "publication": {
+        "manifestPath": ".buildchain/publication/publication-artifact.json",
+        "passportPath": ".buildchain/publication/publication-artifact-passport.json",
+        "registryPath": ".buildchain/publication/publication-registry.json",
+        "primaryArtifact": "_build/observer-declared-timelines.pdf"
+      },
+      "platforms": [
+        {
+          "id": "paper",
+          "manifestPath": ".buildchain/publication/publication-artifact.json"
+        }
+      ]
+    }
+  },
+  "platformArtifactManifests": [
+    {
+      "path": "../publication/publication-artifact.json",
+      "sha256": "294aafe558f909b666d8a59b13ad0fce91206777491a16eed784b1f45c9f47a5",
+      "fields": {
+        "schemaVersion": 1,
+        "contract": "kungfu-buildchain-publication-artifact-manifest",
+        "project": {
+          "name": "paper-observer-declared-timelines",
+          "type": "publication-artifact"
+        },
+        "publication": {
+          "kind": "paper",
+          "title": "Observer-Declared Timelines for Real-World Agent Work",
+          "version": "0.1.0-alpha.3",
+          "abstract": "A design paper for observer-declared timeline views in multi-machine, multi-agent, mixed-source systems.",
+          "authors": [
+            "Keren Dong"
+          ],
+          "primaryArtifact": "_build/observer-declared-timelines.pdf",
+          "siteConsumers": [
+            "papers.libkungfu.dev"
+          ],
+          "archive": {
+            "contract": "kungfu-buildchain-publication-artifact-archive",
+            "id": "observer-declared-timelines",
+            "version": "0.1.0-alpha.3",
+            "appendOnly": true,
+            "sameVersionRepublish": "fail-on-digest-change",
+            "immutablePathPolicy": "do-not-sync-delete-immutable-prefixes",
+            "routes": {
+              "canonicalUrl": "https://papers.libkungfu.dev/observer-declared-timelines/",
+              "latestUrl": "https://papers.libkungfu.dev/observer-declared-timelines/latest/",
+              "latestEvidenceUrl": "https://papers.libkungfu.dev/observer-declared-timelines/latest/buildchain.release.json",
+              "immutableVersionPrefix": "https://papers.libkungfu.dev/archive/observer-declared-timelines/v0.1.0-alpha.3/",
+              "immutableVersionUrl": "https://papers.libkungfu.dev/archive/observer-declared-timelines/v0.1.0-alpha.3/",
+              "artifactUrlPrefix": "https://papers.libkungfu.dev/archive/observer-declared-timelines/v0.1.0-alpha.3/"
+            },
+            "registry": {
+              "contract": "kungfu-buildchain-publication-artifact-registry",
+              "path": ".buildchain/publication/publication-registry.json"
+            },
+            "publicArtifacts": {
+              "manifest": {
+                "path": ".buildchain/publication/publication-artifact.json",
+                "url": "https://papers.libkungfu.dev/archive/observer-declared-timelines/v0.1.0-alpha.3/publication-artifact.json"
+              },
+              "passport": {
+                "path": ".buildchain/publication/publication-artifact-passport.json",
+                "url": "https://papers.libkungfu.dev/archive/observer-declared-timelines/v0.1.0-alpha.3/publication-artifact-passport.json"
+              },
+              "sourceBundle": {
+                "path": ".buildchain/publication/source.tar.gz",
+                "url": "https://papers.libkungfu.dev/archive/observer-declared-timelines/v0.1.0-alpha.3/source.tar.gz",
+                "sha256": "b7551f23a57e78b7c755c95f4148718db49c163d5ed8abdecd0d62d6f3fb1973",
+                "bytes": 12422
+              },
+              "artifacts": [
+                {
+                  "path": "_build/observer-declared-timelines.pdf",
+                  "bytes": 138248,
+                  "sha256": "863e8ed12f2b5380f273061bcc3591036b064b2f384933c1ee5054f3681e206c",
+                  "role": "primary",
+                  "url": "https://papers.libkungfu.dev/archive/observer-declared-timelines/v0.1.0-alpha.3/observer-declared-timelines.pdf"
+                }
+              ]
+            }
+          }
+        },
+        "toolchain": {
+          "type": "latex-docker",
+          "trustClassification": "pinned-docker-toolchain",
+          "command": "mkdir -p _build && cd paper && latexmk -pdf -outdir=../_build main.tex && mv ../_build/main.pdf ../_build/observer-declared-timelines.pdf",
+          "image": "ghcr.io/kungfu-systems/build-images/latex-pdf-builder",
+          "digest": "sha256:c20f3809e96836c1c78e97c76939d12f1de3fed0ea9b7c40c43332ec2ea480f8",
+          "machineVerifiable": true,
+          "invocation": "docker-image-digest"
+        },
+        "source": {
+          "repository": "https://github.com/kungfu-systems/paper-observer-declared-timelines",
+          "sha": "fc8fbd90b1b38acc67c18ffa8187b1378a14e2c7",
+          "treeSha": "03a865a4aa2f76e564b8edfbc55b5a2ca4e85cdc",
+          "sourcePaths": [
+            "paper",
+            "README.md",
+            "LICENSE",
+            "Makefile"
+          ],
+          "sourceFiles": [
+            {
+              "path": "LICENSE",
+              "bytes": 11357,
+              "sha256": "aaa62ccb6cf175f529bfc10e3e979353178ac122ce331dce2ca43475a9ff7706"
+            },
+            {
+              "path": "Makefile",
+              "bytes": 278,
+              "sha256": "a5567cb1bd0c053ba1773553768e6aa773a78e8754522d89ae7ea3cdeb6a5191"
+            },
+            {
+              "path": "paper/main.tex",
+              "bytes": 1984,
+              "sha256": "40a91efbbb3adf1251acf80cb4e99a3563d9c5a0cdb66f8c5420eb13415da800"
+            },
+            {
+              "path": "paper/references.bib",
+              "bytes": 1299,
+              "sha256": "1ff4bdfe4f5f1821bf94826e36c3b4f911adcc5771cbd7cca100a9f4ad51f57c"
+            },
+            {
+              "path": "paper/sections/01-introduction.tex",
+              "bytes": 2587,
+              "sha256": "a07896948cb566979310652dd331edf046b8946fb099bac3b793d334b3af7ca3"
+            },
+            {
+              "path": "paper/sections/02-background.tex",
+              "bytes": 2259,
+              "sha256": "2a15740f1f65656f042f4955f0c9659ee253e56880e3db9e351c0b89488d387a"
+            },
+            {
+              "path": "paper/sections/03-model.tex",
+              "bytes": 2737,
+              "sha256": "72b8a0c28444f3f717e3766493f50f5a149582cfb235bec1c5ac918155a0e2f0"
+            },
+            {
+              "path": "paper/sections/04-design.tex",
+              "bytes": 2154,
+              "sha256": "b4eda07a8f912f2ee27b5a2f85e3e763a2d657668c64ebc0c95fc704a449c244"
+            },
+            {
+              "path": "paper/sections/05-evaluation.tex",
+              "bytes": 1732,
+              "sha256": "173cc9256a938ae3d7a1c9fee1845155c6d7ccb7d226ab402d1eb207f350863c"
+            },
+            {
+              "path": "paper/sections/06-related-work.tex",
+              "bytes": 2107,
+              "sha256": "b4057d5b679a3d9ddc397412f4706eee0c0c0a0fa569cd70dc353569da9aaff7"
+            },
+            {
+              "path": "paper/sections/07-discussion.tex",
+              "bytes": 1281,
+              "sha256": "813b2fff32ed0f664bf98a98af0817cc71f59c37dd728ddebb6bfa4880559361"
+            },
+            {
+              "path": "paper/sections/08-conclusion.tex",
+              "bytes": 755,
+              "sha256": "c464a12eff105aef242ab72992e4ad346f24a96dba658030e28186417676d711"
+            },
+            {
+              "path": "README.md",
+              "bytes": 2346,
+              "sha256": "34f6b344e1262b53df70515092f8003636321fc1336a9f2686a285f8e50c2189"
+            }
+          ],
+          "sourceBundle": {
+            "path": ".buildchain/publication/source.tar.gz",
+            "bytes": 12422,
+            "sha256": "b7551f23a57e78b7c755c95f4148718db49c163d5ed8abdecd0d62d6f3fb1973"
+          }
+        },
+        "artifacts": [
+          {
+            "path": "_build/observer-declared-timelines.pdf",
+            "bytes": 138248,
+            "sha256": "863e8ed12f2b5380f273061bcc3591036b064b2f384933c1ee5054f3681e206c"
+          }
+        ],
+        "metadata": [
+          {
+            "path": "docs/MAP.md",
+            "bytes": 1199,
+            "sha256": "d91c6ff52c219217c6e6b1d9967edf8da2b7457e21cafed1dd88e658cdbf8d40"
+          },
+          {
+            "path": "README.md",
+            "bytes": 2346,
+            "sha256": "34f6b344e1262b53df70515092f8003636321fc1336a9f2686a285f8e50c2189"
+          }
+        ],
+        "generatedAt": "2026-07-10T07:08:51.883Z",
+        "publishedAt": "2026-07-10T07:08:51.883Z",
+        "reproducible": true,
+        "timestampPolicy": "ci-injected",
+        "deterministicInputs": [
+          "publication source paths",
+          "publication metadata paths",
+          "publication primary artifact",
+          "Buildchain publication contract",
+          "source SHA",
+          "source tree SHA"
+        ],
+        "timestampPolicyDetails": {
+          "contract": "kungfu-buildchain-surface-timestamp-policy",
+          "timestampFields": [
+            "generatedAt",
+            "publishedAt"
+          ],
+          "timestampFieldsParticipateInArtifactDigest": false,
+          "artifactDigestScope": "publication artifact digests cover files and source bundle, not manifest timestamps"
+        }
+      },
+      "platform": "",
+      "artifactName": ""
+    }
+  ],
+  "distTagPromotion": {
+    "path": "../release-evidence/v0.1.0-alpha.3/dist-tag-evidence.json",
+    "sha256": "2e2e0b6b588898f4c7549ca4ee2e504de9d5bcb91e9b739380bc41f518c3a31b",
+    "fields": {
+      "schema": 1,
+      "contract": "kungfu-buildchain-dist-tag-promotion-evidence",
+      "mode": "publish-final-version",
+      "auth": "trusted-publishing",
+      "distTag": "alpha",
+      "source": "workflow-input",
+      "packages": [
+        {
+          "name": "@kungfu-tech/paper-observer-declared-timelines",
+          "version": "0.1.0-alpha.3",
+          "distTag": "alpha",
+          "role": "main",
+          "digest": "sha512-K4/cNMikoW1n5fDf3x/GvoqXrR5vMkXHKe63ZU7t3VPGhLuSFVz6NuZEGqGIM5RW4N15tH2Up6YBxbmOGy7FXw=="
+        }
+      ]
+    }
+  },
+  "versionImpact": {
+    "final": "unknown",
+    "source": "default",
+    "rationale": "No surface impact classification was supplied."
+  },
+  "surfaceImpacts": [],
+  "artifacts": [
+    {
+      "group": "node",
+      "kind": "npm",
+      "name": "@kungfu-tech/paper-observer-declared-timelines",
+      "ref": "0.1.0-alpha.3",
+      "digest": "sha512-K4/cNMikoW1n5fDf3x/GvoqXrR5vMkXHKe63ZU7t3VPGhLuSFVz6NuZEGqGIM5RW4N15tH2Up6YBxbmOGy7FXw==",
+      "evidence": "../release-evidence/v0.1.0-alpha.3/evidence.json"
+    }
+  ],
+  "evidence": {
+    "artifactEvidence": "artifact-evidence.json",
+    "publishEvidence": "evidence.json",
+    "transactionState": "",
+    "buildSummary": "../paper-release/build-summary.json",
+    "buildFacts": [],
+    "platformArtifactManifests": [
+      {
+        "path": "../publication/publication-artifact.json",
+        "sha256": "294aafe558f909b666d8a59b13ad0fce91206777491a16eed784b1f45c9f47a5",
+        "platform": "",
+        "artifactName": ""
+      }
+    ],
+    "distTagPromotionEvidence": "../release-evidence/v0.1.0-alpha.3/dist-tag-evidence.json",
+    "kfd1": "",
+    "kfd2": "",
+    "kfd3": "",
+    "impact": "impact.json",
+    "checkReport": "check-report.json",
+    "agentIndex": "agent-index.json"
+  },
+  "recovery": {
+    "rollback": "Use the previous exact release tag or previous floating channel ref.",
+    "verify": "buildchain verify release-passport buildchain.release.json"
+  }
+}
