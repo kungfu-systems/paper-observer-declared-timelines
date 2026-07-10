@@ -69,6 +69,8 @@ make check
 
 ## Status
 
-This is an initial draft repository. The argument is intentionally framed as a
-design paper with an implementation and evaluation plan. Empirical claims must
-be backed by future Kungfu implementation evidence before submission.
+This is a working research draft. The paper combines an observer-declared
+timeline model with an implemented Kungfu Episode substrate and bounded
+preliminary qualification evidence. It explicitly separates current Episode
+evidence from the not-yet-complete multi-machine observer projection. Empirical
+claims must remain tied to reproducible public evidence before submission.
