@@ -3,9 +3,9 @@
 
 Kungfu is infrastructure for managing real-world work with agents. In this
 context, an observer-declared timeline is one surface of a broader runtime fact
-ledger. The current implementation establishes the Episode substrate beneath
-that surface; it does not yet implement the complete multi-machine observer
-projection.
+ledger. The current implementation establishes a substantial single-host fact,
+projection-readiness, and continuity substrate. It does not yet implement the
+complete multi-machine observer projection.
 
 \subsection{Runtime fact ledger}
 
@@ -17,11 +17,14 @@ is a projection over the ledger, not the ledger itself.
 This distinction matters. If storage flattens remote facts into anonymous local
 records, the product loses the ability to explain what was accepted and why. If
 the GUI presents a global-looking order without observer metadata, the user or
-agent cannot reproduce the view during recovery.
+agent cannot reproduce the view during recovery. Runtime recovery must likewise
+rejoin authority at an accepted cut rather than infer continuity from a live
+process.
 
-\subsection{Implemented Episode path}
+\subsection{Implemented Episode authority}
 
-The Episode prototype separates five layers \cite{kungfu2026episode}:
+The Episode prototype separates four authority layers
+\cite{kungfu2026episode}:
 
 \begin{enumerate}[leftmargin=*]
   \item An append-only yijinjing manifest journal stores fixed-layout Episode
@@ -31,70 +34,140 @@ The Episode prototype separates five layers \cite{kungfu2026episode}:
   \item Content-addressed immutable storage resolves payload and schema
         references, with hashes and lengths verified before use.
   \item Structural fsck checks manifest integrity, causal closure, dependencies,
-        content evidence, lifecycle state, and projection drift. Recovery and
+        content evidence, lifecycle state, and safe capabilities. Recovery and
         repair append evidence instead of silently rewriting verified history.
-  \item A SQLite Episode projection accelerates query but remains rebuildable
-        from the journal. Absence or drift degrades the projection without
-        promoting the database to authority.
 \end{enumerate}
 
-This architecture provides the accepted-object and evidence substrate required
-by an observer-declared timeline. It also makes partial failure visible at the
-Episode boundary: lifecycle, health, and operation capability are separate
-dimensions.
+The current Episode query path folds the manifest directly. Kungfu also has
+rebuildable SQLite projections for other query surfaces, but the source-registry
+projection must not be reported as an Episode projection. A dedicated Episode
+projection and its drift/rebuild qualification remain pending. This correction
+is important: authority/projection separation is a design invariant, not
+evidence that every planned derived store already exists.
+
+\subsection{Exact-cut runtime readiness}
+
+Kungfu's runtime activation contract distinguishes process placement from
+semantic readiness \cite{kungfu2026activation}. A runtime handle binds a
+workspace, runtime identity, generation, capabilities, and readiness evidence.
+A live projection capability is Ready only after a verified durable cut exists
+and the projection has reached an explicit projection cut. PID liveness,
+sockets, heartbeats, service installation, and GUI presence remain diagnostics;
+none establishes the cut.
+
+Recovery creates a new authority-bearing generation. Handles, leases, and
+receipts from an older generation fail as stale rather than being rebound to a
+reused PID or route. This supplies concrete counterparts for $e$, $c_a$, and
+$c_p$ in the observer-incarnation model without making activation a second fact
+authority.
+
+\subsection{Fenced continuity across coordinator restart}
+
+Live Peer continuity uses a two-dimensional fence
+
+\[
+(\mathit{runtime\_generation}, \mathit{coordinator\_epoch})
+\]
+
+and one shared registration schema \cite{kungfu2026peercontinuity}. The runtime
+generation advances when the admitted runtime changes; the coordinator epoch
+advances for every coordinator process within a generation. Peers report the
+last authority they admitted. Both sides reject regressing or non-advancing
+authority instead of treating PID, wall clock, or journal presence as proof.
+
+After coordinator loss, a Peer reconnects through bounded retries, clears
+candidate projection state, and rejoins the replacement command journal at the
+accepted registration cut. Only the corresponding new start request may move
+it from Recovering to Ready. Delayed frames from the predecessor cannot satisfy
+the new bootstrap. This is a concrete continuity witness for one single-host
+runtime boundary: it proves a fenced transition, not an immortal process.
+
+\subsection{Session and presentation continuity}
+
+Kungfu's Agent Session Capsule further separates stable work identity, one
+physical provider attempt, control authority, and presentation attachments
+\cite{kungfu2026agentsession}. Coordinator and session-stream epochs are
+independent. A GUI restart may reattach to a surviving stream, while a Capsule
+failure ends the old physical attempt unless provider-supported semantic resume
+creates a new one. Product surfaces expose states such as \texttt{recovering},
+\texttt{action-required}, and \texttt{ended}; a lost worker is not rendered as
+an empty successful session.
+
+This demonstrates why presentation continuity must remain separate from fact
+and observer continuity. A terminal snapshot can restore usability, but it does
+not establish work completion, evidence quality, or causal truth.
+
+\subsection{Versioned upgrades}
+
+The staged upgrade control plane installs immutable runtime images before Core
+selects them \cite{kungfu2026upgrade}. Each workspace generation pins a runtime
+build, artifact root, entrypoint, manifest digest, and protocol/schema contract.
+Compatibility produces an explicit plan: apply now, defer until idle, require
+semantic resume, or block an incompatible transition. Downloading bytes does
+not grant live authority.
+
+Readiness commits a generation switch. Rollback changes routing but does not
+rewrite Episode, journal, work, or provider-session facts. This supports policy
+and implementation identity in the observer model: fact-authority continuity
+may survive an upgrade while observer semantics change visibly. The contract
+and synthetic fixtures are implemented, but signed platform delivery and a
+native upgrade fault campaign remain separate stages.
 
 \subsection{KFD-4 implementation map}
 
-Table~\ref{tab:kfd4-map} distinguishes implemented evidence from the remaining
-observer-view work.
+Table~\ref{tab:kfd4-map} distinguishes landed evidence from the remaining
+observer-view work. Observer incarnation and continuity are refinements of the
+current KFD-4 interpretation, not new claims that its published schema already
+requires these exact fields.
 
 \begin{table}[ht]
 \centering
 \small
-\begin{tabular}{>{\raggedright\arraybackslash}p{0.22\linewidth}>{\raggedright\arraybackslash}p{0.34\linewidth}>{\raggedright\arraybackslash}p{0.34\linewidth}}
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.21\linewidth}>{\raggedright\arraybackslash}p{0.36\linewidth}>{\raggedright\arraybackslash}p{0.34\linewidth}}
 \toprule
-KFD-4 field & Current substrate & Remaining view work \\
+Surface & Current Kungfu evidence & Remaining view work \\
 \midrule
-Observer & Source and writer-location provenance & First-class observer and stable view identifier \\
-Accepted facts & Episode manifests, refs, dependencies, export/import evidence & Multi-source accepted ranges, watermarks, and freshness \\
-Projection policy & Deterministic typed fold and rebuildable Episode query projection & Versioned cross-source ordering policy and tie-breaker \\
+Logical observer & Source, writer, workspace, runtime, and work-console identity & First-class observer and stable view identifier \\
+Incarnation & Runtime generation, coordinator epoch, process-start identity, session-stream epoch & Exported observer-incarnation declaration \\
+Accepted facts & Episode manifests, refs, dependencies, durable cut, and projection cut & Multi-source accepted ranges, watermarks, and freshness \\
+Projection policy & Deterministic typed fold plus pinned runtime/protocol/schema identity & Versioned cross-source ordering policy, tie-breaker, and Episode projection \\
 Causal constraints & In-Episode closure and declared Episode dependencies & Projection-level enforcement over a selected multi-source set \\
-Degraded evidence & Structured fsck issues, missing evidence, stale projection, recovery paths & View-level degradation for incomplete ranges and policy knowledge \\
-Verification & Semantic oracle, fsck, Trust Report, CI gate & Exported observer declaration and projection-level fsck \\
+Continuity & Stale-authority rejection, accepted-cut rejoin, projection rebootstrap, and recovery states & Cross-host continuity witness and deterministic reproduction \\
+Degradation & Structured fsck issues and explicit recovering/action-required states & View-level degradation for incomplete ranges and unknown policy \\
+Verification & Episode oracle, fsck, retained runtime report, Peer campaign, and release gates & Exported declaration and projection-level causal fsck \\
 \bottomrule
 \end{tabular}
-\caption{Current Kungfu evidence mapped to the KFD-4 observer-perspective contract.}
+\caption{Current Kungfu evidence mapped to the observer-declared timeline contract.}
 \label{tab:kfd4-map}
 \end{table}
 
-\subsection{Dual-first interfaces}
+\subsection{Dual-first interfaces and remote work}
 
 The same timeline contract should be usable by humans and agents. A GUI can
 show the default observer view while exposing metadata on demand. A CLI or API
-can return the same accepted facts, projection policy, and degraded evidence
-state directly. Agent-facing surfaces are not secondary integrations; they are
-first-class control surfaces for participants that may inspect the system more
-frequently than humans.
-
-\subsection{Remote work}
+can return the same cuts, policy, continuity, and degradation state directly.
+Agent-facing surfaces are not secondary integrations; they are first-class
+control surfaces for participants that may inspect the system more frequently
+than humans.
 
 Real-world agent work often happens on remote machines. A server-side agent may
 write facts into a remote Kungfu home while the local GUI remains the user's
-primary control plane. A useful product should support importing or syncing
-remote facts back to the local perspective without pretending that the local
-observer saw every event live. The imported timeline should declare source
-location, accepted range, freshness, and any degraded evidence.
+primary control plane. Importing or syncing those facts must not imply that the
+local observer saw them live. The resulting view needs source location,
+accepted range, freshness, policy, and continuity evidence. Generic range- and
+Episode-based source sync is not yet complete, so this remains an end-to-end
+research boundary.
 
 \subsection{Verification gates}
 
 KFD-4 can be used as a release or product gate for perspective-bearing
 surfaces. Passing the gate should mean that the surface exposes the observer,
-accepted facts, projection policy, causal constraints, and degraded evidence
-metadata. It should not mean that every adapter, remote source, or runtime
-payload is complete. Stronger claims require their own KFD-2-style trust
-assessment.
+accepted facts, projection policy, causal constraints, continuity status, and
+degraded evidence metadata. It should not mean that every adapter, remote
+source, or runtime payload is complete. Stronger claims require their own
+KFD-2-style trust assessment.
 
-The Episode qualification report is an example of that evidence discipline. It
-records source revision, profile, workload, semantic dimensions, violations,
-performance observations, and known gaps. It is evidence for a bounded Episode
-profile, not an automatic KFD-4 certificate for every timeline surface.
+Kungfu's Episode, runtime-activation, and Peer-continuity qualifiers demonstrate
+that evidence discipline. Each binds a claim to source revision, platform,
+profile, raw evidence, and non-claims. None automatically certifies every
+timeline surface.
