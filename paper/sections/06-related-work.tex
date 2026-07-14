@@ -10,6 +10,22 @@ observer-declared timeline rule does not replace these mechanisms. It brings a
 similar discipline to product surfaces: when the product shows a timeline, it
 should expose enough perspective metadata for the ordering to be audited.
 
+Distributed snapshots construct a consistent global state without requiring a
+physically simultaneous observation \cite{chandy1985snapshots}. An
+observer-declared view has a related concern, but its contract extends beyond
+one snapshot algorithm: it names accepted heterogeneous facts, projection
+semantics, evidence degradation, and the incarnation that claims the view.
+
+\subsection{Failure detection and recovery epochs}
+
+Failure detectors reason about what distributed processes can suspect and what
+reliable services can be built from those suspicions \cite{chandra1996failure}.
+The incarnation model addresses a product-layer consequence: replacement must
+not turn liveness evidence into authority continuity. Generation and epoch
+fences are implementation techniques for rejecting stale actors; the proposed
+surface additionally asks a timeline to expose the cut and semantic relation
+that make a successor view reproducible.
+
 \subsection{Event sourcing}
 
 Event sourcing treats state as a derivation from an append-only sequence of

@@ -16,6 +16,26 @@
   year = {1989}
 }
 
+@article{chandy1985snapshots,
+  author = {K. Mani Chandy and Leslie Lamport},
+  title = {Distributed Snapshots: Determining Global States of Distributed Systems},
+  journal = {ACM Transactions on Computer Systems},
+  volume = {3},
+  number = {1},
+  pages = {63--75},
+  year = {1985}
+}
+
+@article{chandra1996failure,
+  author = {Tushar Deepak Chandra and Sam Toueg},
+  title = {Unreliable Failure Detectors for Reliable Distributed Systems},
+  journal = {Journal of the ACM},
+  volume = {43},
+  number = {2},
+  pages = {225--267},
+  year = {1996}
+}
+
 @misc{fowler2005eventsourcing,
   author = {Martin Fowler},
   title = {Event Sourcing},
@@ -55,6 +75,42 @@
   author = {{Kungfu Origin Technology Limited}},
   title = {Kungfu Episode Object Model and Atomicity Qualification},
   year = {2026},
-  note = {Source and evidence reviewed at revision e651130fbbbb7a3443b7052d8d21a2cba8321240},
-  howpublished = {\href{https://github.com/kungfu-systems/kungfu/blob/e651130fbbbb7a3443b7052d8d21a2cba8321240/docs/episode-atomicity-qualification.md}{Public qualification source at GitHub}}
+  note = {Source and evidence reviewed at revision b0165579c576c282b1805cacf8b11ed928765ce5},
+  howpublished = {\href{https://github.com/kungfu-systems/kungfu/blob/b0165579c576c282b1805cacf8b11ed928765ce5/docs/qualification/episode-atomicity-qualification.md}{Public qualification source at GitHub}}
+}
+
+@misc{kungfu2026activation,
+  author = {{Kungfu Origin Technology Limited}},
+  title = {{ADR-0080}: Live Runtime Activation Is Capability-Driven and Topology-Neutral},
+  year = {2026},
+  howpublished = {\href{https://github.com/kungfu-systems/kungfu/blob/b0165579c576c282b1805cacf8b11ed928765ce5/docs/adr/ADR-0080-topology-neutral-capability-driven-runtime-activation.md}{Public architecture decision at GitHub}}
+}
+
+@misc{kungfu2026agentsession,
+  author = {{Kungfu Origin Technology Limited}},
+  title = {{ADR-0081}: One Fenced Agent Session Capsule Owns Each Live Agent PTY},
+  year = {2026},
+  howpublished = {\href{https://github.com/kungfu-systems/kungfu/blob/b0165579c576c282b1805cacf8b11ed928765ce5/docs/adr/ADR-0081-durable-agent-session-capsule-control-plane.md}{Public architecture decision at GitHub}}
+}
+
+@misc{kungfu2026peercontinuity,
+  author = {{Kungfu Origin Technology Limited}},
+  title = {{ADR-0086}: Live Peers Reconnect through Fenced Coordinator Authority},
+  year = {2026},
+  howpublished = {\href{https://github.com/kungfu-systems/kungfu/blob/b0165579c576c282b1805cacf8b11ed928765ce5/docs/adr/ADR-0086-live-peer-continuity-and-coordinator-authority.md}{Public architecture decision at GitHub}}
+}
+
+@misc{kungfu2026upgrade,
+  author = {{Kungfu Origin Technology Limited}},
+  title = {{ADR-0087}: Product Upgrades Install Immutable Runtimes before Core Activates Them},
+  year = {2026},
+  howpublished = {\href{https://github.com/kungfu-systems/kungfu/blob/b0165579c576c282b1805cacf8b11ed928765ce5/docs/adr/ADR-0087-versioned-product-runtime-upgrade-control-plane.md}{Public architecture decision at GitHub}}
+}
+
+@misc{kungfu2026runtimequalification,
+  author = {{Kungfu Origin Technology Limited}},
+  title = {Runtime Activation and Product-Delivery Qualification},
+  year = {2026},
+  note = {Retained Darwin arm64 report at revision b325b97392e6253de11e4b7e61b40b9e2fc639ce},
+  howpublished = {\href{https://github.com/kungfu-systems/kungfu/tree/b0165579c576c282b1805cacf8b11ed928765ce5/docs/qualification/evidence/runtime-activation/b325b9739}{Public retained report and checksummed raw evidence at GitHub}}
 }

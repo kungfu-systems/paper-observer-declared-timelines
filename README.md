@@ -68,7 +68,11 @@ make check
 ## Status
 
 This is a working research draft. The paper combines an observer-declared
-timeline model with an implemented Kungfu Episode substrate and bounded
-preliminary qualification evidence. It explicitly separates current Episode
-evidence from the not-yet-complete multi-machine observer projection. Empirical
-claims must remain tied to reproducible public evidence before submission.
+timeline model with Kungfu's Episode authority, exact-cut runtime readiness,
+fenced single-host continuity, versioned runtime upgrades, and bounded public
+qualification evidence. The third substantive revision distinguishes a stable
+logical observer from its physical or software incarnations and requires
+continuity to be evidenced rather than inferred. It explicitly separates that
+single-host substrate from the not-yet-complete multi-machine observer
+projection. Empirical claims must remain tied to reproducible public evidence
+before submission.

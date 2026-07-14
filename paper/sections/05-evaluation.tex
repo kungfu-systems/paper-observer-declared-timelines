@@ -1,10 +1,12 @@
 \section{Preliminary Evaluation}
 \label{sec:evaluation}
 
-The present evidence evaluates the Episode fact substrate needed by an
-observer-declared timeline. It does not yet evaluate a complete multi-machine
-observer view. We separate those claims so implementation progress cannot be
-mistaken for an end-to-end result.
+The present evidence evaluates two prerequisites for an observer-declared
+timeline: a verifiable Episode fact substrate and a single-host continuity
+substrate that does not infer readiness from process liveness. It does not yet
+evaluate a complete multi-machine observer view. We keep evidence from
+different source revisions separate rather than combining it into one imaginary
+run.
 
 \subsection{Questions and method}
 
@@ -12,56 +14,62 @@ The preliminary evaluation asks:
 
 \begin{itemize}[leftmargin=*]
   \item \textbf{RQ1:} Does the Episode path preserve lifecycle, causal object,
-        content, dependency, recovery, and portable-identity semantics?
+        content, dependency, recovery, portable identity, and safe-capability
+        semantics?
   \item \textbf{RQ2:} Does authority remain correct as the retained Episode
         population and physical-writer contention increase?
-  \item \textbf{RQ3:} Can a derived Episode projection become absent or stale,
-        be detected, and converge after rebuild without changing authority?
-  \item \textbf{RQ4:} Can an exported observer declaration reproduce a
+  \item \textbf{RQ3:} Can runtime readiness be bound to an exact authority and
+        projection cut rather than inferred from process existence?
+  \item \textbf{RQ4:} Can a replacement coordinator reject stale authority,
+        rebootstrap surviving Peers at an accepted cut, and expose recovery
+        instead of false continuity?
+  \item \textbf{RQ5:} Can an exported observer declaration reproduce a
         multi-machine timeline and preserve causality under clock skew? This
         question remains future work.
 \end{itemize}
 
-Kungfu's qualification harness drives the public Python storage service backed
-by the C++ Episode implementation. A structurally independent Python oracle
+Kungfu's Episode qualification harness drives the public Python storage service
+backed by the C++ implementation. A structurally independent Python oracle
 models abstract lifecycle and evidence transitions without importing Kungfu or
-reading journal bytes. The recurring semantic slice first exhausts a 48-state
-cross-product of payload presence, direct dependency presence, terminal state,
-and repair choice. It then compares production observations for interrupted
-publication, useful degradation, monotonic repair, dependency containment,
-content integrity, projection rebuild, and export/import identity. The report
-marks a dimension as \texttt{passed}, \texttt{failed}, or
-\texttt{not\_exercised}; unsupported checks are not converted into zero
-violations \cite{kungfu2026episode}.
+reading journal bytes. The current semantic profile compares production
+observations with the oracle and requires every named evidence dimension,
+including capability soundness, to execute and pass
+\cite{kungfu2026episode}.
 
-The latest semantic-gate revision used for this paper is
-\texttt{e651130fbbbb}; its public repository
-validation workflow completed successfully.\footnote{\href{https://github.com/kungfu-systems/kungfu/actions/runs/29078315410}{Public validation run 29078315410.}}
-The numeric scale baseline below
-comes from the separately recorded clean development revision
-\texttt{b6961891731b} on
-\texttt{darwin/arm64}, Node 22.22.3, 20 logical CPUs, and 128 GiB RAM. The
-workload is metadata-only and uses one reported seed for the largest tables.
+Runtime activation uses a separate retained report. It binds clean source and
+tree revisions, platform, exact commands, suite results, raw-log hashes, and
+explicit non-claims \cite{kungfu2026runtimequalification}. Peer continuity and
+runtime upgrade use their own contracts and campaigns. Passing one layer does
+not upgrade a claim owned by another.
 
-\subsection{Semantic and projection evidence}
+\subsection{Episode semantic evolution}
 
-The current smoke profile requires lifecycle safety, useful degradation, repair
-monotonicity, direct dependency containment, projection derivation, publication
-recovery, content integrity, and portable identity. The projection case observes
-an absent SQLite projection, rebuilds it, detects it as stale after new authority
-records, and rebuilds it to a current state. Authority remains the journal
-throughout.
+The historical numerical baseline used the v1 Trust Report at clean revision
+\texttt{b6961891731b}. It predated the complete safe-capability contract, so its
+unexercised capability dimension is not reinterpreted after the fact. The later
+C++ fold/fsck path emits \texttt{kungfu.episode.qualification/v1}; current
+Semantic v1 fixtures compare the exact safe-capability set across healthy,
+open, ended, aborted, degraded, and failed states. Both over-advertising and
+unnecessary contraction fail the required \texttt{capability\_soundness}
+dimension.
 
-The production Episode fold does not yet emit the complete operation-level safe
-capability report required by the atomic-safety design. Consequently,
-\texttt{capability\_soundness} is explicitly
-\texttt{not\_exercised} rather than passed. This is a useful negative result:
-the qualification vocabulary exposes a missing proof instead of allowing an
-edge layer to invent one.
+The distinction illustrates the paper's evidence rule. A stronger current
+contract can close a previously identified gap, but it does not mutate an older
+report. Trust starts from the source-bound facts available for each claim.
 
-\subsection{Scale and contention evidence}
+The current Episode query path is manifest-direct. Earlier prototype text
+described an absent/stale/rebuilt SQLite Episode projection; current public
+qualification explicitly states that rebuilding a source-registry SQLite index
+is not an Episode projection rebuild. Projection derivation therefore remains a
+required semantic property and an implementation gap for a future dedicated
+Episode projection.
 
-The metadata accumulation result is shown in Table~\ref{tab:episode-scale}.
+\subsection{Historical scale and contention evidence}
+
+The metadata accumulation result from revision \texttt{b6961891731b} is shown
+in Table~\ref{tab:episode-scale}. The run used \texttt{darwin/arm64}, Node
+22.22.3, 20 logical CPUs, 128 GiB RAM, and one reported seed for the largest
+tables.
 
 \begin{table}[ht]
 \centering
@@ -75,7 +83,7 @@ Episodes & Ingest/s & List & Fsck & Inspect p95 & RSS \\
 100,000 & 316 & 4.20 s & 804 ms & 87.5 ms & 698 MB \\
 \bottomrule
 \end{tabular}
-\caption{Metadata-only Episode accumulation baseline.}
+\caption{Historical metadata-only Episode accumulation baseline.}
 \label{tab:episode-scale}
 \end{table}
 
@@ -92,9 +100,52 @@ retried; none exhausted the retry bound, and the run reported no count,
 readback, fsck, recovery, unexpected-error, or progress-timeout violation.
 
 These observations support a bounded correctness claim, not a capacity promise.
-Throughput did not scale with writer count, and whole-manifest list and inspect
-cost increased visibly with retained population. A long-lived writer queue and
-bounded or indexed reads remain engineering priorities.
+Throughput did not scale with writer count, whole-manifest costs increased with
+retained population, the workload was metadata-only, and only one of three
+declared baseline seeds supplied the largest tables.
+
+\subsection{Exact-cut activation evidence}
+
+The current retained runtime report is bound to clean Kungfu revision
+\texttt{b325b97392e6} on Darwin arm64. It passed all eight required suites:
+activation Core, product distribution, Profile action admission, runtime
+surface parity, bounded performance observation, frozen-product runtime smoke,
+full product verification, and product catalog verification
+\cite{kungfu2026runtimequalification}.
+
+The activation Core suite exercises daemonless storage, direct no-fork
+coordination, exact-cut readiness, first-call serialization, generation
+replacement, crash windows, lease expiry, and idle drain. Native readiness
+coordinates are published only after durability and projection authorities
+establish the requested cut. Consumers revalidate those authorities; descriptor
+bytes and process liveness are not promoted to readiness proof.
+
+This supports a named-platform single-host claim: the implementation can bind a
+runtime incarnation to semantic readiness and a projection cut. It does not
+establish distributed election, cross-machine leases, high availability,
+physical-host power-loss recovery, Linux or Windows product qualification, or a
+universal latency SLO.
+
+\subsection{Peer continuity and upgrade evidence}
+
+The Peer-continuity implementation includes native contract tests, Python
+runtime tests, Agent Session transport tests, and a process campaign covering
+coordinator kill/restart, stale and future authority rejection, projection
+rebootstrap, and product-visible failure handling
+\cite{kungfu2026peercontinuity}. Stages 1--3 of the implementation are complete.
+The macOS process campaign passes locally, while retained Linux and Windows
+execution remain promotion boundaries. We therefore treat it as strong
+implementation evidence for the continuity-witness model, not as a
+cross-platform or cross-host qualification result.
+
+The versioned upgrade control plane similarly has a registered contract,
+negative fixtures, and Python tests for immutable runtime installation,
+generation-fenced planning, activation, rollback, and reference-aware garbage
+collection \cite{kungfu2026upgrade}. The implementation is staged. Signed
+platform distribution, public product messaging, and native fault campaigns
+remain outside the present evidence. The paper consequently claims that the
+system can represent policy/runtime transitions explicitly, not that every
+desktop upgrade path is qualified.
 
 \subsection{Remaining end-to-end evaluation}
 
@@ -105,31 +156,26 @@ The observer-declared timeline claim still requires the following case studies:
         the user later reviews the work from a local GUI.
   \item \textbf{Multi-machine sync.} Facts from local and remote runtimes are
         imported with different freshness boundaries and causal completeness.
+  \item \textbf{Observer replacement.} A successor exports a continuity
+        witness, reproduces the predecessor view at a selected cut, and then
+        advances without accepting stale authority.
+  \item \textbf{Policy upgrade.} The same accepted fact set is projected under
+        two declared policy versions, with semantic difference made visible.
   \item \textbf{Replay and debugging.} A user or agent reconstructs why a task
         reached a given state after partial failure.
-  \item \textbf{Release evidence.} Build and release facts are shown as a
-        timeline with source provenance and verification status.
 \end{itemize}
 
-The corresponding measures include:
+The corresponding measures include recovery time, hidden-ordering assumptions
+found during audit, deterministic reproduction from exported metadata, causal
+order preservation under clock skew, surfaced degradation rather than silent
+repair, and human/agent ability to select the next safe action.
 
-\begin{itemize}[leftmargin=*]
-  \item recovery time after interruption;
-  \item number of hidden-ordering assumptions discovered during audit;
-  \item ability for an agent to reproduce a displayed timeline from exported
-        metadata;
-  \item correctness of causal-order preservation under clock skew;
-  \item rate of degraded-evidence states surfaced rather than silently hidden;
-        and
-  \item user and agent ability to decide the next safe action from the view.
-\end{itemize}
-
-Required artifacts include fixture ledgers, selected Episode sets, projected
-timeline exports, KFD-4 observer-perspective declarations, KFD-2 trust
-assessments, and machine-readable Episode Trust Reports. The evaluation must
-include clock skew, late remote evidence, missing accepted ranges, missing
-causal links, policy-version mismatch, and deterministic reproduction by both a
-human-facing and an agent-facing surface.
+Required artifacts include fixture ledgers, selected Episode sets, accepted
+source ranges, projected timeline exports, observer-incarnation and continuity
+declarations, KFD-2 trust assessments, and machine-readable qualification
+reports. The campaign must include clock skew, late remote evidence, missing
+ranges, missing causal links, policy-version mismatch, observer restart, and
+deterministic reproduction by both human-facing and agent-facing surfaces.
 
 The paper should not rely on private operational logs for evidence unless they
 are sanitized, permissioned, and explicitly marked.
