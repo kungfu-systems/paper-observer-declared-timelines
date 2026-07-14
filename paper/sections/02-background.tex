@@ -20,7 +20,10 @@ for these questions, but only if the view makes its own assumptions inspectable.
 Distributed systems theory has long shown that time and ordering are not
 trivial in distributed computation. Lamport's happened-before relation
 separates causal order from physical clock order \cite{lamport1978time};
-vector-clock style systems make concurrency explicit \cite{mattern1989virtual}.
+vector-clock style systems make concurrency explicit \cite{mattern1989virtual};
+and distributed snapshots show that a useful global state is a constructed
+consistent cut rather than a simultaneous physical observation
+\cite{chandy1985snapshots}.
 Yet many product surfaces still sort mixed-source facts primarily by wall-clock
 timestamps and present the result as a single history. That is often sufficient
 for casual logs, but it is not sufficient for recovery, audit, or cooperation
@@ -29,6 +32,28 @@ among capable participants.
 The problem is sharper in agent systems because the user may not have the time
 or expertise to manually diagnose missing evidence. A local product must help
 both the human and the agent understand what the view means.
+
+\subsection{The immortal-observer temptation}
+
+A system can reject a universal clock while still assuming that its observer is
+stable. That assumption also fails in long-lived work. Processes restart,
+controllers are replaced, frontends and runtimes upgrade independently, and
+physical execution may survive the component that displayed it. A process
+identifier or heartbeat shows placement and liveness; it does not prove that a
+replacement accepted the same authority, reconstructed the same projection, or
+understands the same policy version.
+
+Failure-detector theory similarly separates suspicions about process failure
+from stronger system guarantees \cite{chandra1996failure}. In the product
+setting, detecting that a process disappeared is only the start of recovery;
+it does not prove what authority its successor may safely claim.
+
+This creates a distinction between a stable logical observer and one physical
+or software \emph{incarnation} of that observer. A replacement may legitimately
+continue the logical perspective, but only after it establishes an accepted
+cut, rejects stale authority, rebuilds derived state, and records the semantic
+version under which it will project the facts. Otherwise the product should
+show a discontinuity or degraded view rather than imply seamless recovery.
 
 \subsection{KFD foundation}
 
@@ -65,3 +90,8 @@ Episodes do not make the timeline absolute. They make its inputs explicit. A
 view can name which Episodes it accepted, preserve their internal and declared
 cross-Episode causality, and then apply observer policy only where the causal
 facts leave an ordering choice.
+
+Episodes also survive observer replacement. This matters because fact
+continuity should not depend on the lifetime of the process that currently
+projects or presents those facts. Observer continuity is then a separately
+verifiable claim over stable authority rather than a second owner of history.
