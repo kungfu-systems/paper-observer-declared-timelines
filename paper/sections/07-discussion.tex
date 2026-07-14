@@ -4,51 +4,92 @@
 \subsection{Not relativism}
 
 Declaring an observer does not mean that any story is acceptable. Facts,
-causality, hashes, manifests, schemas, and verification results remain
+causality, hashes, manifests, schemas, cuts, and verification results remain
 load-bearing. The rule rejects an undeclared view from nowhere, not the
-existence of facts.
+existence of facts. Two observers may order concurrent facts differently; they
+may not silently invert known causality or invent evidence.
+
+\subsection{The observer is neither omniscient nor immortal}
+
+The first version of the proposal emphasized that no observer has an absolute
+global vantage point. Runtime implementation exposed a second requirement: an
+observer also has a history. A logical identity can outlive a process, but the
+successor must not inherit authority or semantics by name alone.
+
+This refinement is useful beyond Kungfu. Long-lived local applications routinely
+restart coordinators, reconnect clients, replace caches, and upgrade binaries.
+Without incarnation metadata, a product may preserve visual continuity while
+silently changing its accepted cut or interpretation. The continuity witness
+makes that transition inspectable. It does not require one specific runtime
+topology; embedded, process-hosted, and remote implementations can provide
+different evidence for the same surface obligation.
+
+\subsection{Continuity is layered}
+
+Fact-authority continuity, observer continuity, and presentation continuity
+fail independently. Treating one as proof of the others creates common but
+dangerous shortcuts:
+
+\begin{itemize}[leftmargin=*]
+  \item a live PID does not prove that the process owns current authority;
+  \item a reattached terminal does not prove task completion or evidence quality;
+  \item an intact ledger does not prove that the current projection reached it;
+  \item a successful software download does not prove that a new runtime may
+        safely activate; and
+  \item a familiar GUI does not prove unchanged policy semantics.
+\end{itemize}
+
+Making these claims separate may expose more recovering or action-required
+states. That is a product cost, but hiding them would exchange usability today
+for unauditable recovery later. Dual-first interfaces can reduce the burden by
+giving agents the same structured state that humans see in the product.
 
 \subsection{Not universal consensus}
 
 Some systems require consensus, total ordering, or a central sequencer. The
-observer-declared timeline rule does not forbid those designs. It says that
-when a product presents a timeline to a human or agent, the view should still
-declare the accepted facts and projection policy behind it.
+observer-declared timeline rule does not forbid those designs. It says that when
+a product presents a timeline to a human or agent, the view should still declare
+the accepted facts, cut, projection policy, and observer incarnation behind it.
+A consensus result can itself be one accepted fact source.
 
 \subsection{Adopter responsibility}
 
 A schema can standardize vocabulary, but it cannot prove an adopter's runtime
 correctness by itself. An adopter that claims a concrete timeline is complete,
-fresh, or causally valid must provide product-specific evidence. This is why
-KFD-4 should be assessed through KFD-2-style trust claims when used as a
-release or product gate.
+fresh, continuous, or causally valid must provide product-specific evidence.
+This is why KFD-4 should be assessed through KFD-2-style trust claims when used
+as a release or product gate.
 
 \subsection{What the prototype establishes}
 
 The current prototype establishes that the proposed view can stand on a
-nontrivial fact substrate: bounded causal objects, append-only authority,
-independent semantic checking, explicit degradation, derived projection drift,
-recovery, and portable evidence. It also demonstrates that qualification can
-remain honest under incomplete implementation by recording an unexercised
-capability dimension rather than silently passing it.
+nontrivial fact and single-host continuity substrate: bounded causal objects,
+append-only authority, safe-capability assessment, exact-cut readiness,
+generation and epoch fencing, stale-authority rejection, explicit recovery
+states, and versioned runtime selection. It also demonstrates that different
+evidence revisions can remain honest instead of being retroactively merged into
+one stronger result.
 
 It does not establish that observer declaration by itself improves human
 recovery time or agent decision quality. Nor does it establish a distributed
 consistency protocol, conflict resolution between independently written
-authority roots, or a total order acceptable to every observer.
+authority roots, cross-host continuity, or a total order acceptable to every
+observer.
 
 \subsection{Implementation and evidence limits}
 
-The numeric baseline is metadata-only, uses a single reported seed at the
-largest scale, and does not cover realistic payload volume, deep dependency
+The Episode numerical baseline is metadata-only, uses a single reported seed at
+the largest scale, and does not cover realistic payload volume, deep dependency
 DAGs, distributed writers, long soak, storage exhaustion, or every publication
-crash point. The current safe-capability report is incomplete. Most importantly,
-the first-class observer policy object, accepted-range synchronization,
-multi-source projection command, exported observer declaration, and
-projection-level causal fsck have not yet landed.
+crash point. The retained runtime-activation result is Darwin arm64 and
+single-host. Peer continuity has a passing local macOS process campaign but not
+retained Linux and Windows promotion evidence. The upgrade implementation has
+contract and synthetic coverage but not complete signed-platform and native
+fault-campaign evidence.
 
-These are not incidental implementation details. They are the remaining bridge
-between a qualified fact substrate and an evaluated observer-declared timeline.
-Future versions should add exported observer perspectives, replay fixtures,
-multi-machine failure cases, deterministic reproduction experiments, and
-measured human/agent recovery outcomes.
+Most importantly, the first-class observer policy object, accepted range
+synchronization, multi-source projection command, dedicated Episode projection,
+exported observer declaration, continuity witness export, and projection-level
+causal fsck have not yet landed. These are not incidental implementation
+details. They are the remaining bridge between a qualified substrate and an
+evaluated multi-machine observer timeline.

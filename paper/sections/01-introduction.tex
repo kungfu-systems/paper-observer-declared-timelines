@@ -17,31 +17,43 @@ fragile fiction. The view may be useful in the common case, but it becomes
 difficult to audit, reproduce, or challenge when clocks disagree, remote facts
 arrive late, evidence is redacted, or causal links are incomplete.
 
-This paper proposes a design rule: timelines for mixed-source real-world agent
-work should declare their observer. A timeline view should state the observer
-whose perspective is being shown, the fact sources and ranges it has accepted,
-the projection policy that orders concurrent facts, the causal constraints that
-must not be inverted, and the degraded evidence state when the view is
-incomplete. The claim is not that there are no facts. On the contrary, the
-claim is that facts and causality become more important when no product can
-honestly claim a universal view from nowhere.
+There is a second failure mode: the observer itself changes. A coordinator
+restarts, a frontend upgrades, a process identifier is reused, or a new agent
+attaches to a surviving work session. Reusing the same product label does not
+prove that the new process accepted the same facts, reached the same projection
+cut, or applies the same policy. An observer should therefore be modeled as a
+logical identity with explicit incarnations. Continuity between incarnations is
+an evidence-bearing relation, not an assumption derived from process liveness,
+wall-clock proximity, or a familiar user interface.
 
-This paper moves from a design-only proposal toward an implemented systems
-argument. It makes four contributions:
+This paper proposes a design rule: timelines for mixed-source real-world agent
+work should declare their observer. A timeline view should state the logical
+observer and current incarnation, the fact sources and ranges it has accepted,
+the authority and projection cuts it has reached, the policy that orders
+concurrent facts, the causal constraints that must not be inverted, the
+evidence connecting it to a prior incarnation, and the degraded state when any
+of those claims is incomplete. The claim is not that there are no facts. On the
+contrary, facts and causality become more important when no product can honestly
+claim a universal, timeless view from nowhere.
+
+This paper moves from a fact-substrate prototype toward an implemented systems
+argument. It makes five contributions:
 
 \begin{itemize}[leftmargin=*]
   \item a problem statement for perspective-bearing timelines in real-world
-        agent work;
+        agent work, including failure and replacement of the observer itself;
   \item a minimal observer-declared timeline model in which accepted Episodes
         provide bounded causal inputs and observer policy selects a
         deterministic order without overriding known causality;
-  \item a mapping from the KFD foundation and KFD-4 surface contract to the
-        facts, policies, degradation, and verification required by a timeline;
-  \item an implemented Kungfu substrate that separates append-only authority,
-        typed derivation, rebuildable projection, and edge presentation; and
-  \item preliminary semantic, scale, contention, recovery, and projection
-        evidence, together with an explicit account of what the current
-        prototype does not yet establish.
+  \item an observer-incarnation and continuity-witness model that distinguishes
+        fact-authority continuity, observer continuity, and presentation
+        continuity;
+  \item an implementation mapping from KFD-4 to Kungfu's append-only Episode
+        authority, exact-cut readiness, fenced runtime recovery, immutable
+        upgrade selection, and explicit product recovery states; and
+  \item bounded semantic, scale, contention, projection, and single-host
+        continuity evidence, together with an explicit account of what the
+        current prototype does not yet establish.
 \end{itemize}
 
 The rest of the paper is organized as follows. Section~\ref{sec:background}

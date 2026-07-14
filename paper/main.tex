@@ -32,23 +32,26 @@ line tools, model providers, and human decisions. These systems often present a
 single timeline even though the underlying facts come from multiple clocks,
 locations, and participants. This paper argues that such timelines should not
 be presented as views from nowhere. A useful timeline should declare its
-observer, accepted facts, projection policy, causal constraints, and degraded
-evidence state. We call this design rule \emph{observer-declared timelines}.
+logical observer, observer incarnation, accepted facts, projection policy,
+causal constraints, continuity evidence, and degraded evidence state. We call
+this design rule \emph{observer-declared timelines}.
 The rule is motivated by KFD-4, a Kungfu procedure derived from the foundation
 that facts must not drift, trust must start from facts, and cooperation must
 start from trusted value. We define a timeline as a deterministic projection
 over accepted \emph{Episodes}: bounded causal objects whose manifests, evidence,
-dependencies, and verification state can be inspected independently. We then
-report an implementation of the Episode fact substrate in Kungfu: append-only
-journal authority, a typed fold, content-addressed references, structural
-verification, a rebuildable SQLite projection, recovery, and qualification
-gates. In a metadata-only development baseline, the implementation retained and
+dependencies, and verification state can be inspected independently. We extend
+the model with observer incarnations and continuity witnesses: a restarted or
+upgraded process does not inherit perspective merely because it has the same
+name. We then report a Kungfu implementation path comprising append-only fact
+authority, exact-cut projection readiness, generation- and epoch-fenced Peer
+recovery, immutable runtime selection, explicit recovery states, and
+source-bound qualification. A historical metadata baseline retained and
 re-read 100,000 Episodes and 200,000 semantic records without a correctness
-violation; a ten-writer workload also completed without exhausted retries or
-correctness violations. These results establish preliminary evidence for the
-fact substrate, not an end-to-end validation of observer-relative multi-machine
-projection. First-class observer policy, accepted-range sync, and
-projection-level causal verification remain future work.
+violation; newer single-host evidence exercises exact-cut activation and
+process recovery. These results establish a fact and continuity substrate, not
+an end-to-end validation of observer-relative multi-machine projection.
+First-class observer policy, accepted-range sync, reproducible cross-source
+ordering, and projection-level causal verification remain future work.
 \end{abstract}
 
 \input{sections/01-introduction}
