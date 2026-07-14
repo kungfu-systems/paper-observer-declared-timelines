@@ -15,6 +15,7 @@ _build/
 .buildchain/publication-result.json
 .buildchain/paper-release/
 .buildchain/contract-drift/
+.buildchain/controller/
 .buildchain/release-candidate/
 .buildchain/release-evidence/
 .buildchain/release-passport/
