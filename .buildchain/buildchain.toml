@@ -7,7 +7,7 @@ name = "paper-observer-declared-timelines"
 [publication]
 kind = "paper"
 title = "Observer-Declared Timelines for Real-World Agent Work"
-version = "0.1.0-alpha.5"
+version = "0.1.0-alpha.6"
 abstract = "A systems design paper for observer-declared timelines with evidenced observer incarnations, grounded in Kungfu Episodes and single-host continuity."
 authors = [ "Keren Dong" ]
 primary_artifact = "_build/observer-declared-timelines.pdf"
