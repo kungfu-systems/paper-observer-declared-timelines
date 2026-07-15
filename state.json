@@ -16,14 +16,14 @@
   "state_ref": "buildchain/release-state/0-1-0-alpha-6",
   "state_path": "/home/runner/work/paper-observer-declared-timelines/paper-observer-declared-timelines/.buildchain/release-state/v0.1.0-alpha.6.json",
   "evidence_path": "/home/runner/work/paper-observer-declared-timelines/paper-observer-declared-timelines/.buildchain/release-evidence/v0.1.0-alpha.6/evidence.json",
-  "state": "publishing",
-  "previous_state": "prepared",
+  "state": "publish_failed",
+  "previous_state": "publishing",
   "actor": "kungfu-origin",
   "run_id": "29386642944",
   "superseded_by": "",
-  "failure": "",
+  "failure": "Command failed: node \"/home/runner/work/paper-observer-declared-timelines/paper-observer-declared-timelines/.buildchain/runtime/scripts/npm-publish-transaction.mjs\" --cwd \"/home/runner/work/paper-observer-declared-timelines/paper-observer-declared-timelines/.buildchain/admitted/artifact/.buildchain/publication/npm-package\"",
   "artifacts": [],
   "evidence": [],
   "created_at": "2026-07-15T03:30:36.048Z",
-  "updated_at": "2026-07-15T03:30:37.555Z"
+  "updated_at": "2026-07-15T03:30:40.875Z"
 }
