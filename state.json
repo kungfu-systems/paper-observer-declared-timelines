@@ -16,14 +16,27 @@
   "state_ref": "buildchain/release-state/0-1-0-alpha-8",
   "state_path": "/home/runner/work/paper-observer-declared-timelines/paper-observer-declared-timelines/.buildchain/release-state/v0.1.0-alpha.8.json",
   "evidence_path": "/home/runner/work/paper-observer-declared-timelines/paper-observer-declared-timelines/.buildchain/release-evidence/v0.1.0-alpha.8/evidence.json",
-  "state": "publishing",
-  "previous_state": "prepared",
+  "state": "published",
+  "previous_state": "publishing",
   "actor": "kungfu-origin",
   "run_id": "29391374547",
   "superseded_by": "",
   "failure": "",
-  "artifacts": [],
-  "evidence": [],
+  "artifacts": [
+    {
+      "group": "node",
+      "kind": "npm",
+      "name": "@kungfu-tech/paper-observer-declared-timelines",
+      "ref": "0.1.0-alpha.8",
+      "digest": "sha512-68ugGvrnutyprT6IY95ArUsLPDzOBFErliGSPR6rC68HJXJnUHNFl4f5e2V2hwloicuDesVSoJvByo42yf8oHQ==",
+      "role": "",
+      "required": true
+    }
+  ],
+  "evidence": [
+    ".buildchain/release-evidence/v0.1.0-alpha.8/evidence.json",
+    ".buildchain/release-evidence/v0.1.0-alpha.8/dist-tag-evidence.json"
+  ],
   "created_at": "2026-07-15T05:25:49.451Z",
-  "updated_at": "2026-07-15T05:25:51.395Z"
+  "updated_at": "2026-07-15T05:25:59.220Z"
 }
