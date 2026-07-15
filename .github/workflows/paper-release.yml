@@ -31,3 +31,5 @@ jobs:
       artifact-paths: _build/observer-declared-timelines.pdf
       github-release: true
       release-passport-product-name: Observer-Declared Timelines
+    secrets:
+      BUILDCHAIN_PROMOTION_TOKEN: ${{ secrets.BUILDCHAIN_PROMOTION_TOKEN }}
