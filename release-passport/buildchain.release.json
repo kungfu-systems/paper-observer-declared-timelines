@@ -59,7 +59,7 @@
     "promotionChannelTreeSha": "",
     "publishToolingSha": "68854bc8c229623c5ac2ec05d6d3429f771420f9",
     "releaseStateRef": "refs/heads/buildchain/release-state/0-1-0-alpha-8",
-    "releaseStateSha": "",
+    "releaseStateSha": "4ca4d02d57f365ad9177f879bef9cd8b76128392",
     "package": {
       "name": "@kungfu-tech/paper-observer-declared-timelines",
       "version": "0.1.0-alpha.8"
