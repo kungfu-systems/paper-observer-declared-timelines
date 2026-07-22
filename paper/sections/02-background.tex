@@ -1,63 +1,53 @@
 \section{Background and Motivation}
 \label{sec:background}
 
-\subsection{Real-world agent work}
+\subsection{One work world, several fact cuts}
 
 We use \emph{real-world agent work} to mean work in which agents help users
 manage concrete tasks rather than only produce isolated model outputs. Such
-work may involve local state, external repositories, remote terminals, GUI and
-TUI controls, model calls, package releases, documents, and human decisions.
-The product problem is not only how to run an agent. It is how to keep the
-state of the work legible over time.
+work may involve local state, repositories, remote terminals, GUI and TUI
+controls, model calls, releases, documents, and human decisions. The product
+problem is not only how to run an agent. It is how to keep the work legible
+when no session or interface contains its complete identity.
 
-Long-lived work introduces a persistence problem. Users and agents need to ask:
-what happened, what source observed it, what evidence supports it, what is
-missing, and what action is safe now? A timeline view is a natural interface
-for these questions, but only if the view makes its own assumptions inspectable.
+Return to the cross-session task. The repository may prove which files changed.
+The remote runtime may contain later execution facts. The local GUI may have
+accepted only an earlier remote range. A build service may know that one
+artifact failed after the first session ended. The transcript may explain an
+intention without proving that the intended action occurred. None of these
+sources is automatically the whole world, and combining their timestamps does
+not remove their different authority, freshness, and consequence boundaries.
+
+A useful view therefore needs more than recorded facts. It needs to say which
+facts it accepted, what it omitted, how it ordered concurrent material, and for
+which participant and action context the projection is being shown. Otherwise
+two participants can appear to disagree about reality when they actually hold
+different cuts or apply different policies.
 
 \subsection{The global-clock temptation}
 
-Distributed systems theory has long shown that time and ordering are not
-trivial in distributed computation. Lamport's happened-before relation
-separates causal order from physical clock order \cite{lamport1978time};
-vector-clock style systems make concurrency explicit \cite{mattern1989virtual};
-and distributed snapshots show that a useful global state is a constructed
-consistent cut rather than a simultaneous physical observation
-\cite{chandy1985snapshots}.
-Yet many product surfaces still sort mixed-source facts primarily by wall-clock
-timestamps and present the result as a single history. That is often sufficient
-for casual logs, but it is not sufficient for recovery, audit, or cooperation
-among capable participants.
+Distributed systems theory has long shown that causal order is not equivalent
+to physical time. Lamport's happened-before relation separates causality from
+wall-clock order \cite{lamport1978time}; vector-clock style systems make
+concurrency explicit \cite{mattern1989virtual}; and distributed snapshots show
+that a useful global state is a constructed consistent cut rather than a
+simultaneous physical observation \cite{chandy1985snapshots}.
 
-The problem is sharper in agent systems because the user may not have the time
-or expertise to manually diagnose missing evidence. A local product must help
-both the human and the agent understand what the view means.
+Yet product surfaces often sort mixed-source facts by timestamp and render one
+history. That may be sufficient for casual logs. It is not sufficient when a
+human or agent must audit a claim, recover after interruption, challenge an
+ordering assumption, or decide what action is safe. A deterministic global
+sequence can still be misleading if the product does not declare which facts
+entered it and which policy resolved concurrency.
 
-\subsection{The immortal-observer temptation}
+Observer declaration is not a replacement for clocks, consensus, tracing, or
+replication. It is a product-level obligation above them. Even a centrally
+sequenced view has an accepted input boundary and a consumer for whom the view
+has consequences.
 
-A system can reject a universal clock while still assuming that its observer is
-stable. That assumption also fails in long-lived work. Processes restart,
-controllers are replaced, frontends and runtimes upgrade independently, and
-physical execution may survive the component that displayed it. A process
-identifier or heartbeat shows placement and liveness; it does not prove that a
-replacement accepted the same authority, reconstructed the same projection, or
-understands the same policy version.
+\subsection{The KFD-4 obligation}
 
-Failure-detector theory similarly separates suspicions about process failure
-from stronger system guarantees \cite{chandra1996failure}. In the product
-setting, detecting that a process disappeared is only the start of recovery;
-it does not prove what authority its successor may safely claim.
-
-This creates a distinction between a stable logical observer and one physical
-or software \emph{incarnation} of that observer. A replacement may legitimately
-continue the logical perspective, but only after it establishes an accepted
-cut, rejects stale authority, rebuilds derived state, and records the semantic
-version under which it will project the facts. Otherwise the product should
-show a discontinuity or degraded view rather than imply seamless recovery.
-
-\subsection{KFD foundation}
-
-The KFD foundation used by Kungfu can be summarized as:
+The Foundation Triad can be summarized as:
 
 \begin{quote}
 KFD-1: facts must not drift.\\
@@ -65,33 +55,36 @@ KFD-2: trust must start from facts.\\
 KFD-3: cooperation must start from trusted value.
 \end{quote}
 
-KFD-4 applies this foundation to timelines:
+KFD-4 applies those responsibilities to perspective-bearing surfaces:
 
 \begin{quote}
 KFD-4: timelines must declare their observer.
 \end{quote}
 
-Under this framing, a timeline view is trustworthy only when it is grounded in
-non-drifting facts, exposes enough evidence for trust assessment, and helps
-participants cooperate through transparent value rather than hidden pressure or
-opaque authority \cite{kfd2026observer}.
+The word \emph{observer} does not mean that truth is subjective. It marks the
+position from which a bounded fact world becomes a view. A declaration must
+preserve source identity and known causality, expose the evidence boundary for
+trust, and make the view's action relevance and limitations inspectable to the
+participant expected to use it. Different observers may legitimately receive
+different projections; they may not silently invent facts or invert known
+causal relations.
 
-\subsection{Why a causal object is needed}
+\subsection{The observer is not immortal}
 
-A projection rule alone does not define the unit that can be accepted, moved,
-verified, or rejected. Raw journal pages are physical append blocks; sessions
-and runs are product vocabulary; individual frames are too small to provide a
-portable closure boundary. Kungfu therefore introduces an \emph{Episode}: a
-bounded causal segment containing the manifest, frame references, content
-commitments, provenance, schemas, dependencies, and verification evidence
-needed to inspect one unit of work \cite{kungfu2026episode}.
+Once a view has an observer, long-lived work exposes another boundary. The
+component producing the view may restart, a frontend may upgrade, a process
+identifier may be reused, or a new agent may attach to surviving work. Reusing
+the same name does not prove that the successor accepted the same fact cut,
+reconstructed the same projection, or applies compatible semantics.
 
-Episodes do not make the timeline absolute. They make its inputs explicit. A
-view can name which Episodes it accepted, preserve their internal and declared
-cross-Episode causality, and then apply observer policy only where the causal
-facts leave an ordering choice.
+Failure-detector theory separates suspicions about process failure from
+stronger guarantees \cite{chandra1996failure}. At the product layer, liveness
+is likewise weaker than continuity. A replacement may continue a logical
+perspective only after it identifies the authority it accepted, rejects stale
+claims, rebuilds or verifies derived state, and declares the semantics under
+which it presents the result. Otherwise the product should expose a
+discontinuity or degraded view.
 
-Episodes also survive observer replacement. This matters because fact
-continuity should not depend on the lifetime of the process that currently
-projects or presents those facts. Observer continuity is then a separately
-verifiable claim over stable authority rather than a second owner of history.
+This incarnation problem refines KFD-4 after the basic perspective obligation
+is established. It must not obscure the simpler first claim: before asking
+whether an observer continued, the system must say which observer's view it is.

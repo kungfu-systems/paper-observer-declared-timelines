@@ -9,10 +9,12 @@ Working title:
 Observer-Declared Timelines for Real-World Agent Work
 ```
 
-The paper studies a design rule behind KFD-4: timeline views in multi-machine,
-multi-agent, mixed-source systems should declare their observer, accepted
-facts, projection policy, causal constraints, and degraded evidence state
-instead of presenting a view from nowhere.
+The paper derives the design rule behind KFD-4 from the KFD Foundation Triad:
+timeline views in multi-machine, multi-agent, mixed-source systems should
+declare their observer, accepted fact cut, projection policy, causal
+constraints, consequence position, and degraded evidence state instead of
+presenting a view from nowhere. Observer incarnation and continuity are treated
+as a second-order refinement after the core perspective contract.
 
 Publisher: Kungfu Origin Technology Limited.
 Contact: Keren Dong <keren.dong@kungfu.link>.
@@ -67,12 +69,12 @@ make check
 
 ## Status
 
-This is a working research draft. The paper combines an observer-declared
-timeline model with Kungfu's Episode authority, exact-cut runtime readiness,
-fenced single-host continuity, versioned runtime upgrades, and bounded public
-qualification evidence. The third substantive revision distinguishes a stable
-logical observer from its physical or software incarnations and requires
-continuity to be evidenced rather than inferred. It explicitly separates that
-single-host substrate from the not-yet-complete multi-machine observer
+This is a working research draft. The paper first develops a generic
+observer-declared timeline model without requiring a Kungfu-specific causal
+object. It then maps that model to Kungfu's Episode authority, exact-cut runtime
+readiness, fenced single-host continuity, versioned runtime upgrades, and
+bounded public qualification evidence. Observer incarnation and continuity are
+derived after the core perspective contract. Current substrate evidence remains
+explicitly separate from the not-yet-complete multi-machine observer
 projection. Empirical claims must remain tied to reproducible public evidence
 before submission.

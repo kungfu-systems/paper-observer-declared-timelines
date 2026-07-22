@@ -26,32 +26,25 @@
 \maketitle
 
 \begin{abstract}
-Software systems that manage real-world agent work increasingly combine facts
-from local machines, remote sessions, repositories, user interfaces, command
-line tools, model providers, and human decisions. These systems often present a
-single timeline even though the underlying facts come from multiple clocks,
-locations, and participants. This paper argues that such timelines should not
-be presented as views from nowhere. A useful timeline should declare its
-logical observer, observer incarnation, accepted facts, projection policy,
-causal constraints, continuity evidence, and degraded evidence state. We call
-this design rule \emph{observer-declared timelines}.
-The rule is motivated by KFD-4, a Kungfu procedure derived from the foundation
-that facts must not drift, trust must start from facts, and cooperation must
-start from trusted value. We define a timeline as a deterministic projection
-over accepted \emph{Episodes}: bounded causal objects whose manifests, evidence,
-dependencies, and verification state can be inspected independently. We extend
-the model with observer incarnations and continuity witnesses: a restarted or
-upgraded process does not inherit perspective merely because it has the same
-name. We then report a Kungfu implementation path comprising append-only fact
-authority, exact-cut projection readiness, generation- and epoch-fenced Peer
-recovery, immutable runtime selection, explicit recovery states, and
-source-bound qualification. A historical metadata baseline retained and
-re-read 100,000 Episodes and 200,000 semantic records without a correctness
-violation; newer single-host evidence exercises exact-cut activation and
-process recovery. These results establish a fact and continuity substrate, not
-an end-to-end validation of observer-relative multi-machine projection.
-First-class observer policy, accepted-range sync, reproducible cross-source
-ordering, and projection-level causal verification remain future work.
+Long-lived agent work crosses sessions, machines, repositories, interfaces,
+and human decisions. Its facts can remain stable while different participants
+receive different cuts and projections of them. A system that hides those
+boundaries can turn a selected view into an apparent global history. This paper
+derives a response from the KFD Foundation Triad: if facts must not drift,
+trust must start from facts, and cooperation must start from trusted value,
+then a perspective-bearing timeline must declare the observer for whom its
+facts were selected and ordered. We call this rule \emph{observer-declared
+timelines}. We define a minimal contract over an observer, accepted fact cut,
+projection policy, causal constraints, consequence position, known gaps, and
+verification evidence. We then derive a second-order requirement: when the
+component presenting a view restarts or changes, continuity of perspective must
+be evidenced rather than inferred from a reused name or live process. Kungfu's
+Episode authority, exact-cut readiness, and fenced recovery mechanisms provide
+bounded implementation evidence for parts of this contract. They do not yet
+establish a reproducible multi-machine observer projection. The contribution is
+therefore both a design rule and a staged proof obligation: stable facts are
+necessary, but a trustworthy and actionable timeline must also say from where,
+for whom, and under which evidence boundary those facts became a view.
 \end{abstract}
 
 \input{sections/01-introduction}
