@@ -1,29 +1,40 @@
 \section{Conclusion}
 
-Real-world agent work makes timeline views more important and more dangerous.
-They are important because humans and agents need durable surfaces for recovery,
-audit, and cooperation. They are dangerous when they hide their perspective and
-present mixed-source facts as an absolute global order.
+The KFD Foundation Triad preserves a shared work world through a recursive
+kernel: facts support bounded trust, trust supports inspectable cooperation,
+and cooperation creates consequences that return as new facts. Operating that
+kernel across multiple participants reveals a necessary boundary. Stable facts
+do not produce a view from nowhere.
 
-Observer-declared timelines offer a practical alternative. A product can keep
-facts and causality load-bearing while admitting that every useful view is
-projected from a declared perspective. This paper adds a further constraint:
-the observer is not timeless. A stable logical observer may have many
-incarnations, and continuity between them must be established through accepted
-cuts, policy/runtime identity, recovery evidence, and explicit degradation.
+KFD-4 follows from that pressure. A perspective-bearing timeline must declare
+the observer, accepted fact cut, projection policy, causal constraints,
+consequence position, known gaps, and verification evidence that produced the
+view. KFD-1 prevents the projection from silently changing the underlying
+reference. KFD-2 requires the view's warrant to remain reconstructable. KFD-3
+requires its value, constraints, and safe action boundary to be inspectable to
+the participant expected to use it. Observer declaration is therefore not a
+fourth slogan beside the triad. It is one mechanism required when the triad is
+used by participants who cannot occupy every position at once.
 
-Kungfu now supplies preliminary implementation evidence for both sides of this
-rule. Episodes provide bounded causal authority and safe-capability evidence.
-Exact-cut runtime readiness, generation and coordinator-epoch fencing, Peer
-rebootstrap, explicit recovery states, and immutable runtime selection show how
-an observer incarnation can fail or change without silently acquiring old
-authority. Historical scale evidence and newer source-bound single-host
-qualification remain separate, preserving the provenance of each claim.
+The core rule also exposes a second-order problem: an observer implementation
+may fail or change. A logical observer can outlive one process, but continuity
+between incarnations must be established through accepted cuts, policy and
+runtime identity, recovery evidence, and explicit degradation rather than a
+reused name or familiar interface.
 
-The results do not yet validate the complete observer-relative multi-machine
-view. That next step requires first-class observer policy, accepted source
-ranges, reproducible cross-source ordering, exported incarnation and continuity
-declarations, projection-level causal fsck, and experiments in which humans and
-agents recover from the same declared perspective. Keeping that boundary
-explicit is part of the proposal itself: trust in a timeline, including trust in
-its continuity, must start from the facts actually available.
+Kungfu provides bounded implementation evidence beneath these claims. Episodes
+realize accepted causal units with append-only authority and safe-capability
+evidence. Exact-cut runtime readiness, generation and coordinator-epoch
+fencing, Peer rebootstrap, explicit recovery states, and immutable runtime
+selection show how one observer incarnation can change without silently
+acquiring stale authority. These mechanisms instantiate the model; they are
+not required to understand it, and their qualification does not certify the
+complete observer-level result.
+
+That result remains open. It requires first-class observer declarations,
+accepted source ranges, reproducible cross-source projection, exported
+continuity evidence, projection-level causal verification, and experiments in
+which humans and agents reconstruct the same declared view and use it to choose
+or refuse a next action. Preserving this boundary is part of the argument:
+trust in a timeline must start from the facts available, while cooperation must
+start from a view whose perspective and consequences are visible.

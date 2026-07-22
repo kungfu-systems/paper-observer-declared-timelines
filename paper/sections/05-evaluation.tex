@@ -1,31 +1,36 @@
 \section{Preliminary Evaluation}
 \label{sec:evaluation}
 
-The present evidence evaluates two prerequisites for an observer-declared
-timeline: a verifiable Episode fact substrate and a single-host continuity
-substrate that does not infer readiness from process liveness. It does not yet
-evaluate a complete multi-machine observer view. We keep evidence from
-different source revisions separate rather than combining it into one imaginary
-run.
+Evaluation must follow the paper's dependency order. The primary claim concerns
+whether an observer declaration makes a perspective reproducible, auditable,
+and actionable. Evidence for a fact substrate or recovery mechanism is
+necessary but cannot substitute for that observer-level result. The present
+implementation evaluates two prerequisites: a verifiable Episode authority and
+a single-host continuity substrate that does not infer readiness from process
+liveness. The complete multi-machine observer view remains unevaluated. We keep
+evidence from different source revisions separate rather than combining it into
+one imaginary run.
 
 \subsection{Questions and method}
 
-The preliminary evaluation asks:
+The evaluation program asks:
 
 \begin{itemize}[leftmargin=*]
-  \item \textbf{RQ1:} Does the Episode path preserve lifecycle, causal object,
-        content, dependency, recovery, portable identity, and safe-capability
-        semantics?
-  \item \textbf{RQ2:} Does authority remain correct as the retained Episode
-        population and physical-writer contention increase?
-  \item \textbf{RQ3:} Can runtime readiness be bound to an exact authority and
-        projection cut rather than inferred from process existence?
-  \item \textbf{RQ4:} Can a replacement coordinator reject stale authority,
+  \item \textbf{RQ1:} Can two human- or agent-facing surfaces reproduce the
+        same declared view from its observer, accepted cut, policy, causality,
+        consequence position, and degradation metadata? This remains future
+        work.
+  \item \textbf{RQ2:} Does declaration expose hidden ordering assumptions,
+        missing evidence, and differences in safe next action that an
+        undeclared global-looking timeline hides? This remains future work.
+  \item \textbf{RQ3:} Does the Episode path preserve the causal identity,
+        evidence, recovery, and safe-capability semantics needed by an accepted
+        fact cut?
+  \item \textbf{RQ4:} Can runtime readiness be bound to exact authority and
+        projection cuts rather than inferred from process existence?
+  \item \textbf{RQ5:} Can a replacement coordinator reject stale authority,
         rebootstrap surviving Peers at an accepted cut, and expose recovery
         instead of false continuity?
-  \item \textbf{RQ5:} Can an exported observer declaration reproduce a
-        multi-machine timeline and preserve causality under clock skew? This
-        question remains future work.
 \end{itemize}
 
 Kungfu's Episode qualification harness drives the public Python storage service
@@ -41,6 +46,25 @@ tree revisions, platform, exact commands, suite results, raw-log hashes, and
 explicit non-claims \cite{kungfu2026runtimequalification}. Peer continuity and
 runtime upgrade use their own contracts and campaigns. Passing one layer does
 not upgrade a claim owned by another.
+
+\subsection{Observer-level evaluation program}
+
+The direct test of KFD-4 should begin with one shared causal scenario and vary
+the observer declaration. At minimum, a local operator, remote worker, release
+reviewer, and recovery agent should receive controlled overlaps and gaps in
+their accepted fact cuts. The experiment should compare an undeclared
+wall-clock timeline with declared projections that preserve the same known
+causality.
+
+The primary measures are deterministic reproduction from exported metadata,
+causal-order preservation under clock skew, hidden assumptions found during
+audit, evidence gaps surfaced rather than silently repaired, and the ability of
+humans and agents to identify a justified next action or refusal. This last
+measure is necessary: a view may be factually reproducible yet fail to expose
+the value and constraints needed for cooperation.
+
+No current result in this paper completes that program. The remaining
+subsections report prerequisite evidence and preserve that qualification.
 
 \subsection{Episode semantic evolution}
 

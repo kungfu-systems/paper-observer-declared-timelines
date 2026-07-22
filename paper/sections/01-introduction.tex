@@ -1,64 +1,78 @@
 \section{Introduction}
 
-Agent-facing software is moving from short, isolated prompts toward long-lived
-work that touches real files, repositories, terminals, background sessions,
-remote machines, package releases, human reviews, and product state. In that
-setting, a timeline is not merely a convenience widget. It becomes a control
-surface: it tells a human or an agent what happened, what is still pending,
-which facts are trustworthy, and where recovery should begin.
+Consider a long-running agent task that crosses two sessions. The first
+session changes a repository, starts remote work, records one failed check, and
+ends before the task is complete. A later participant opens the local product
+and asks what happened and what action is safe now. The local interface, remote
+runtime, repository, build system, and retained session evidence may each
+contain valid facts. They need not contain the same facts, reach the same cut,
+or order concurrent facts in the same way.
 
-The hard part is that there is usually no single authoritative vantage point.
-A local graphical interface may observe one set of facts. A command line tool
-running on a server may observe another. A build system, git repository,
-runtime tracer, and human operator each see different evidence at different
-times. If a product collapses those observations into one global-looking
-sequence without explaining the perspective, it creates an attractive but
-fragile fiction. The view may be useful in the common case, but it becomes
-difficult to audit, reproduce, or challenge when clocks disagree, remote facts
-arrive late, evidence is redacted, or causal links are incomplete.
+The KFD Foundation Triad describes how such work can remain one shared world
+across participants and time \cite{kfdFoundation2026}:
 
-There is a second failure mode: the observer itself changes. A coordinator
-restarts, a frontend upgrades, a process identifier is reused, or a new agent
-attaches to a surviving work session. Reusing the same product label does not
-prove that the new process accepted the same facts, reached the same projection
-cut, or applies the same policy. An observer should therefore be modeled as a
-logical identity with explicit incarnations. Continuity between incarnations is
-an evidence-bearing relation, not an assumption derived from process liveness,
-wall-clock proximity, or a familiar user interface.
+\begin{equation}
+\text{Facts} \rightarrow \text{Trust} \rightarrow \text{Cooperation}
+\rightarrow \text{New Facts}.
+\end{equation}
 
-This paper proposes a design rule: timelines for mixed-source real-world agent
-work should declare their observer. A timeline view should state the logical
-observer and current incarnation, the fact sources and ranges it has accepted,
-the authority and projection cuts it has reached, the policy that orders
-concurrent facts, the causal constraints that must not be inverted, the
-evidence connecting it to a prior incarnation, and the degraded state when any
-of those claims is incomplete. The claim is not that there are no facts. On the
-contrary, facts and causality become more important when no product can honestly
-claim a universal, timeless view from nowhere.
+KFD-1 preserves stable reference, KFD-2 binds reliance to evidence, and KFD-3
+makes relevant value and constraints visible to a participant before action.
+Cooperation then creates consequences that return through review into a
+successor fact world. That loop solves a continuity problem, but it creates a
+new pressure: no participant consumes the entire world from every position.
 
-This paper moves from a fact-substrate prototype toward an implemented systems
-argument. It makes five contributions:
+The pressure appears separately at each layer of the triad. If a selected or
+transformed fact cut is presented without perspective, selection can masquerade
+as reality and violate the stable reference required by KFD-1. If a claim does
+not identify which cut and projection support it, a later participant cannot
+reconstruct the warrant required by KFD-2. If a view hides whose consequence
+position, available actions, and known gaps it represents, a participant cannot
+inspect the value and constraints needed by KFD-3; cooperation degrades into
+guessing, obedience, or repeated reconstruction.
+
+This yields the first derived pressure from the Foundation Triad:
+
+\begin{equation}
+\text{non-drifting facts} + \text{multiple participants}
+\Longrightarrow \text{declared perspective}.
+\end{equation}
+
+KFD-4 names the corresponding rule: timelines must declare their observer
+\cite{kfd2026observer}. An observer-declared timeline does not deny facts or
+causality. It states which observer position is represented, which facts were
+accepted, how the view was projected, which causal relations dominate that
+projection, what consequences or actions the view is meant to support, and
+where evidence remains incomplete. The result is not a view from nowhere. It
+is a reproducible claim about how one view was formed from a shared fact world.
+
+The core rule leads to a second question only after the perspective is defined:
+what happens when the observer implementation itself restarts, upgrades, or is
+replaced? A stable product label does not prove that a new process accepted the
+same facts or applied the same projection semantics. We therefore distinguish a
+logical observer from its incarnations and treat continuity between them as an
+evidence-bearing transition. This is a derived refinement of the core rule, not
+a prerequisite for first understanding why perspective must be declared.
+
+This paper makes five contributions:
 
 \begin{itemize}[leftmargin=*]
-  \item a problem statement for perspective-bearing timelines in real-world
-        agent work, including failure and replacement of the observer itself;
-  \item a minimal observer-declared timeline model in which accepted Episodes
-        provide bounded causal inputs and observer policy selects a
-        deterministic order without overriding known causality;
-  \item an observer-incarnation and continuity-witness model that distinguishes
-        fact-authority continuity, observer continuity, and presentation
-        continuity;
-  \item an implementation mapping from KFD-4 to Kungfu's append-only Episode
-        authority, exact-cut readiness, fenced runtime recovery, immutable
-        upgrade selection, and explicit product recovery states; and
-  \item bounded semantic, scale, contention, projection, and single-host
-        continuity evidence, together with an explicit account of what the
-        current prototype does not yet establish.
+  \item a derivation of observer declaration from the fact, trust, and
+        cooperation responsibilities of the KFD Foundation Triad;
+  \item a minimal model over accepted fact cuts, causal constraints, projection
+        policy, consequence position, degradation, and verification;
+  \item an incarnation and continuity-witness refinement for observers that
+        fail, restart, or change implementation;
+  \item a mapping from that generic model to Kungfu's Episode fact authority,
+        exact-cut readiness, fenced recovery, and product surfaces; and
+  \item bounded implementation evidence together with an explicit account of
+        the observer-level evaluation that remains incomplete.
 \end{itemize}
 
-The rest of the paper is organized as follows. Section~\ref{sec:background}
-places the problem in the context of clocks, tracing, event sourcing, and
-agent work. Section~\ref{sec:model} defines the model. Section~\ref{sec:design}
-describes the Kungfu prototype. Section~\ref{sec:evaluation} reports preliminary
-evidence and the remaining evaluation plan. Section~\ref{sec:related} compares
+Section~\ref{sec:background} develops the problem through the running example
+and distributed-systems context. Section~\ref{sec:model} defines the generic
+model without requiring a Kungfu-specific causal object. Section~\ref{sec:design}
+then introduces Episodes and runtime mechanisms as one concrete realization.
+Section~\ref{sec:evaluation} separates evidence for that substrate from the
+still-open end-to-end observer claim, and Section~\ref{sec:related} compares
 related work.
