@@ -7,8 +7,8 @@ name = "paper-observer-declared-timelines"
 [publication]
 kind = "paper"
 title = "Observer-Declared Timelines for Real-World Agent Work"
-version = "0.1.0-alpha.8"
-abstract = "A systems design paper for observer-declared timelines with evidenced observer incarnations, grounded in Kungfu Episodes and single-host continuity."
+version = "0.1.0-alpha.9"
+abstract = "A systems design paper deriving observer-declared timelines from the Foundation Triad, with Kungfu Episodes as an implementation substrate and continuity as a second-order refinement."
 authors = [ "Keren Dong" ]
 primary_artifact = "_build/observer-declared-timelines.pdf"
 artifact_paths = [ "_build/observer-declared-timelines.pdf" ]
