@@ -1,165 +1,158 @@
 \section{Observer-Declared Timeline Model}
 \label{sec:model}
 
-An observer-declared timeline is a deterministic projection over accepted
-causal objects from a declared, versioned perspective. The model is
-intentionally small; it is a surface and verification contract, not a physical
-database schema.
+An observer-declared timeline is a deterministic, evidence-bounded projection
+of accepted facts from a declared perspective. The model is a surface and
+verification contract, not a physical storage schema. In particular, it does
+not require facts to be packaged as Episodes; Section~\ref{sec:design}
+introduces Episodes as Kungfu's implementation choice.
 
-\subsection{Facts and sources}
+\subsection{Facts, authority, and accepted cuts}
 
-A \emph{fact} is an event, record, manifest, receipt, payload hash, causal
-edge, or verification result that the system treats as evidence. A fact has a
-source, provenance, and a local identity. A fact source may be a local runtime,
-remote runtime, repository, release artifact, adapter, imported bundle, or
-external system.
+A \emph{fact} is an event, record, manifest, receipt, payload commitment,
+causal edge, human decision, or verification result treated as evidence. Each
+fact has source identity, provenance, and an authority boundary. Occurrence,
+record, and admission remain distinct: something may happen without being
+recorded, and a record does not automatically enter every accepted fact world.
 
-The view does not need to accept every fact the product has ever seen. It must
-declare which source ranges, heads, cursors, manifests, watermarks, or
-freshness boundaries were accepted for the current projection.
+For a view $V$, let $A_V$ be its \emph{accepted fact cut}. The cut names the
+source ranges, heads, cursors, manifests, watermarks, freshness bounds, or other
+coordinates admitted for that view. It also records known omissions. A view
+need not accept every fact the product has seen, but it must not present an
+undeclared subset as complete reality.
 
-\subsection{Episodes and causal closure}
+Accepted facts and their source commitments are authority inputs. A database
+index, folded state, GUI history, exported ordering, or summary is derived.
+Deleting and rebuilding a projection must not rewrite authority, and
+disagreement between authority and projection must be reported as drift.
 
-Let an Episode be
+\subsection{Observer and consequence position}
 
-\[
-E_i = (F_i, \prec_i, D_i, M_i),
-\]
+An \emph{observer} is the perspective for which a view is formed. It may be a
+human, agent, workspace, runtime location, service, or product surface. The
+observer is not necessarily the author or owner of the facts.
 
-where $F_i$ is its fact set, $\prec_i$ is the known causal relation inside the
-Episode, $D_i$ is its declared dependency set over other Episodes, and $M_i$ is
-the manifest and verification evidence that defines the object. Frame-level
-causal edges must close inside $E_i$. Influence from another Episode must be
-represented by $D_i$, rather than by an undeclared edge that escapes the object
-boundary.
+A useful declaration also states the observer's \emph{consequence position}:
+the purpose, responsibility boundary, and action context in which the view is
+expected to be used. The same accepted facts may support different relevance
+or presentation for a local operator, a remote worker, a release reviewer, or
+an auditing agent. Consequence position does not permit invention of facts. It
+explains why a bounded projection matters and which actions it can responsibly
+support.
 
-For one view, the accepted set $A$ contains selected Episodes plus the source
-ranges, heads, watermarks, and freshness boundaries under which they were
-accepted. The induced causal relation $\prec_A$ is the union of each
-$\prec_i$ and the dependency edges declared by $D_i$. If required evidence is
-missing, $A$ remains inspectable but carries degraded evidence rather than a
-fabricated closure claim.
+This field carries KFD-3 into the model. Without it, observer identity can
+become inert metadata while the interface still hides whose value, constraints,
+and available choices shaped the view.
 
-\subsection{Logical observer and incarnation}
+\subsection{Causality and projection policy}
 
-A \emph{logical observer} is the stable perspective whose view is requested.
-It may represent a human, agent, runtime location, workspace, service, or
-product view. It is not necessarily the author or owner of the facts.
+Let $\prec_V$ be the known causal relation induced by $A_V$, including declared
+cross-source dependencies. A projection policy $P_v$ selects and orders
+accepted facts for display, replay, export, or agent consumption under semantic
+version $v$. For observer $O$, the visible timeline is
 
-An \emph{observer incarnation} is one evidence-bearing realization of that
-logical observer. We model it as
+\begin{equation}
+T_{O,P_v} = \Pi_{O,P_v}(A_V, \prec_V).
+\end{equation}
 
-\[
-O^e = (o, e, r, v, c_a, c_p),
-\]
+The projection $\Pi$ must be deterministic for its declared inputs and must
+produce a linear extension of known causality. If $a \prec_V b$, a valid
+projection cannot place $b$ before $a$. Concurrent or causally unrelated facts
+may be ordered by observer policy, source priority, local sequence, or a stable
+tie-breaker, but the choice must be inspectable and versioned. When accepted
+evidence cannot support a total order, the result is partial, degraded, or
+rejected rather than silently repaired with wall-clock order.
 
-where $o$ is the logical observer identity, $e$ is a monotonic incarnation or
-epoch identity, $r$ identifies the runtime or implementation that performs the
-projection, $v$ identifies the projection-policy semantics, $c_a$ is the
-accepted authority cut, and $c_p$ is the cut reached by the derived projection.
-The concrete representation may differ by product. The invariant is that a
-process name, PID, socket, heartbeat, or GUI instance cannot substitute for
-these claims.
+\subsection{Trust and cooperation obligations}
 
-The projection cut cannot lead the accepted authority cut. If the system cannot
-show that the projection reached the declared authority, the view is stale or
-recovering. If it cannot identify its semantic version, reproduction by another
-incarnation is unproven.
+An observer declaration is useful only if later participants can test two
+classes of claim.
 
-\subsection{Continuity witness}
+\paragraph{Reliance.}
+The declaration must expose enough authority coordinates, policy identity,
+causal constraints, gaps, and verification evidence to reconstruct why the
+view may be trusted for its stated purpose. It is not a universal trust score;
+another purpose may require another assessment.
 
-Replacing an incarnation creates a transition, not identity by assertion. Let
+\paragraph{Action.}
+The declaration must expose enough consequence position, safe remaining
+operations, responsibility, and constraint information for a participant to
+choose, refuse, or bound a next action. A technically reproducible ordering that
+hides its action relevance does not complete the KFD-3 obligation.
 
-\[
-W_{e \rightarrow e+1} = (O^e, O^{e+1}, c, q, R),
-\]
-
-where $c$ is the predecessor cut accepted by the successor, $q$ states the
-policy/runtime compatibility relation, and $R$ is retained recovery evidence.
-A valid witness shows that the successor rejected stale authority, accepted a
-non-regressing cut, rebuilt or verified its derived state, and reached a
-declared readiness condition. A policy change may still be continuous at the
-fact layer while producing a new view identity; the witness must not erase that
-semantic change.
-
-This yields three separate continuity claims:
-
-\begin{itemize}[leftmargin=*]
-  \item \emph{fact-authority continuity}: accepted facts remain intact and
-        verifiable across process or software replacement;
-  \item \emph{observer continuity}: a successor incarnation proves how its
-        accepted cut and semantics relate to its predecessor; and
-  \item \emph{presentation continuity}: a GUI, CLI, or agent interface can
-        reconnect and display a coherent view.
-\end{itemize}
-
-Presentation continuity cannot prove the first two. A familiar screen may be
-backed by stale authority, and a preserved terminal stream may still lack a
-valid work-completion claim. Conversely, authority may remain sound while the
-presentation is unavailable or explicitly recovering.
-
-\subsection{Projection policy}
-
-A projection policy $P_v$ orders accepted facts for display, replay, export,
-or agent consumption under semantic version $v$. For incarnation $O^e$, the
-visible timeline is
-
-\[
-T_{O^e,P_v} = \Pi_{O^e,P_v}(A, \prec_A).
-\]
-
-The projection $\Pi$ must be deterministic and must produce a linear extension
-of every known causal constraint. If $a \prec_A b$, a valid projection cannot
-place $b$ before $a$. Concurrent or causally unrelated facts may be ordered by
-observer policy, source priority, local sequence, or a deterministic
-tie-breaker, but that policy must be inspectable and versioned. When no valid
-total order can be supported by the accepted evidence, the result is degraded
-or rejected rather than silently repaired with wall-clock order.
-
-\subsection{Authority and derived views}
-
-The accepted facts and their manifests are authority inputs. A folded current
-view, database index, GUI timeline, or exported ordering is derived. Deleting
-and rebuilding a derived projection must not change authority, and disagreement
-between a projection and authority must be reported as drift. Runtime
-activation, recovery, and upgrade mechanisms may select or validate a
-projection, but they do not acquire ownership of the underlying facts.
+These obligations keep the timeline inside the Foundation loop. The view starts
+from a fact cut, supports bounded reliance, enables inspectable cooperation,
+and allows resulting consequences to return as new evidence without letting the
+action certify its own history.
 
 \subsection{Degraded evidence}
 
-A timeline may be useful even when evidence is incomplete. Instead of hiding
-that incompleteness, the view should declare degraded states such as missing
-causality, incomplete accepted ranges, stale remote facts, redacted payloads,
-schema mismatch, unverifiable source, unresolved conflict, unknown continuity,
-or a projection that has not reached its required cut. A degraded view is
-preferable to an overconfident total order.
+A timeline may remain useful when evidence is incomplete. Instead of hiding
+that incompleteness, it should declare states such as missing causality,
+incomplete accepted ranges, stale remote facts, redacted payloads, schema
+mismatch, unverifiable source, unresolved conflict, unknown policy, or a
+projection that has not reached its required cut.
 
 Degradation is operation-sensitive. Missing payload bytes may prevent replay
 while still allowing manifest inspection; a stale index may prevent indexed
-query while still allowing rebuild; a missing continuity witness may prevent a
-seamless-history claim while preserving both incarnations' local facts. A
-single global health bit is therefore weaker than a report that names the
-evidence gap and the safe capabilities that remain.
+query while still allowing rebuild; an incomplete remote range may block a
+completion claim while still supporting local inspection. A single health bit
+is weaker than a report that names the evidence gap and the capabilities that
+remain safe.
 
-\subsection{Minimal surface}
+\subsection{Observer incarnation and continuity}
 
-The minimal observer-declared surface contains:
+The core model identifies whose perspective a view represents. A long-lived
+logical observer may then have multiple physical or software incarnations. We
+model one incarnation as
+
+\begin{equation}
+O^e = (o, e, r, v, c_a, c_p),
+\end{equation}
+
+where $o$ is the logical observer identity, $e$ is a monotonic incarnation or
+epoch, $r$ identifies the implementation performing the projection, $v$ is the
+policy semantics, $c_a$ is the accepted authority cut, and $c_p$ is the cut
+reached by derived projection. A name, PID, socket, heartbeat, or GUI instance
+cannot substitute for these claims.
+
+Replacing an incarnation creates a transition rather than identity by
+assertion. Let
+
+\begin{equation}
+W_{e \rightarrow e+1} = (O^e, O^{e+1}, c, q, R),
+\end{equation}
+
+where $c$ is the predecessor cut accepted by the successor, $q$ states the
+policy or runtime compatibility relation, and $R$ is retained recovery
+evidence. A valid witness shows how the successor rejected stale authority,
+accepted a non-regressing cut, rebuilt or verified derived state, and reached a
+declared readiness condition. A semantic change may preserve fact continuity
+while producing a new view identity; the witness must not erase that change.
+
+This separates three claims: \emph{fact-authority continuity}, in which facts
+remain intact across replacement; \emph{observer continuity}, in which a
+successor proves its relation to the prior perspective; and
+\emph{presentation continuity}, in which an interface reconnects and displays
+a coherent view. Presentation continuity cannot prove the first two.
+
+\subsection{Minimal declaration}
+
+The core observer-declared surface contains:
 
 \begin{itemize}[leftmargin=*]
-  \item a stable view identifier and view subject;
-  \item logical observer identity, current incarnation, and predecessor when
-        continuity is claimed;
-  \item accepted fact sources, ranges, and authority cut;
+  \item stable view identity and subject;
+  \item observer identity and consequence position;
+  \item accepted fact sources, ranges, authority cut, and known omissions;
   \item projection cut, policy version, causal dominance, and tie-breaker;
-  \item runtime or implementation identity sufficient for reproduction;
-  \item causal constraints and continuity-witness status;
   \item degraded evidence states and safe remaining operations; and
   \item verification status and evidence references.
 \end{itemize}
 
-This extends the KFD-4 observer-perspective schema published by the KFD package
-\cite{kfd2026observer}. The schema is a vocabulary and verification boundary,
-not a claim that an adopter's runtime implementation is correct merely because
-it imports the schema. Incarnation fields are a proposed refinement derived
-from implementation experience; they are not yet a published KFD-4 schema
-revision.
+When continuity across implementations is claimed, the surface additionally
+contains current incarnation, predecessor relation, runtime or implementation
+identity, and continuity-witness status. These fields refine the published
+KFD-4 observer-perspective schema \cite{kfd2026observer}; they are proposed from
+implementation experience and are not yet a published schema revision. A
+schema defines vocabulary and a verification boundary. Importing it cannot by
+itself prove that an adopter's runtime or displayed view is correct.
