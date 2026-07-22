@@ -9,6 +9,20 @@ load-bearing. The rule rejects an undeclared view from nowhere, not the
 existence of facts. Two observers may order concurrent facts differently; they
 may not silently invert known causality or invent evidence.
 
+\subsection{Not merely a metadata footer}
+
+Declaring an observer is not satisfied by attaching a username to an otherwise
+opaque timeline. The declaration is load-bearing only when it exposes the
+accepted fact cut, projection semantics, consequence position, gaps, and
+verification evidence needed for bounded reliance and action. This is where
+KFD-2 and KFD-3 remain active: a participant must be able to reconstruct why a
+view is trustworthy for a purpose and what choices or constraints follow from
+using it.
+
+A system may therefore preserve fact identity and still fail KFD-4 at the
+surface. It may also produce a reproducible view that remains unusable for
+cooperation because responsibility or safe remaining operations are hidden.
+
 \subsection{The observer is neither omniscient nor immortal}
 
 The first version of the proposal emphasized that no observer has an absolute
@@ -16,8 +30,9 @@ global vantage point. Runtime implementation exposed a second requirement: an
 observer also has a history. A logical identity can outlive a process, but the
 successor must not inherit authority or semantics by name alone.
 
-This refinement is useful beyond Kungfu. Long-lived local applications routinely
-restart coordinators, reconnect clients, replace caches, and upgrade binaries.
+This second-order refinement is useful beyond Kungfu. Long-lived local
+applications routinely restart coordinators, reconnect clients, replace caches,
+and upgrade binaries.
 Without incarnation metadata, a product may preserve visual continuity while
 silently changing its accepted cut or interpretation. The continuity witness
 makes that transition inspectable. It does not require one specific runtime
@@ -70,11 +85,11 @@ states, and versioned runtime selection. It also demonstrates that different
 evidence revisions can remain honest instead of being retroactively merged into
 one stronger result.
 
-It does not establish that observer declaration by itself improves human
-recovery time or agent decision quality. Nor does it establish a distributed
-consistency protocol, conflict resolution between independently written
-authority roots, cross-host continuity, or a total order acceptable to every
-observer.
+It does not establish that observer declaration improves human recovery time,
+agent decision quality, or the independence of participant choice. Nor does it
+establish a distributed consistency protocol, conflict resolution between
+independently written authority roots, cross-host continuity, or a total order
+acceptable to every observer.
 
 \subsection{Implementation and evidence limits}
 

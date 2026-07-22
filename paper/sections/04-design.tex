@@ -1,11 +1,14 @@
-\section{Kungfu Prototype and Design}
+\section{Kungfu Instantiation and Prototype}
 \label{sec:design}
 
-Kungfu is infrastructure for managing real-world work with agents. In this
-context, an observer-declared timeline is one surface of a broader runtime fact
-ledger. The current implementation establishes a substantial single-host fact,
-projection-readiness, and continuity substrate. It does not yet implement the
-complete multi-machine observer projection.
+The preceding model does not require one physical ledger, causal-object type,
+or runtime topology. This section maps it to Kungfu, infrastructure for managing
+real-world work with agents. Kungfu realizes accepted causal units as
+\emph{Episodes} and supplies single-host authority, projection-readiness, and
+continuity mechanisms around them. Episodes are an implementation substrate in
+this paper, not a logical prerequisite for observer declaration. Their broader
+role as a candidate primitive belongs to companion work. The current Kungfu
+path does not yet implement the complete multi-machine observer projection.
 
 \subsection{Runtime fact ledger}
 
@@ -23,7 +26,12 @@ process.
 
 \subsection{Implemented Episode authority}
 
-The Episode prototype separates four authority layers
+An Episode is a bounded causal segment with independent identity, manifest,
+frame references, content commitments, provenance, schemas, dependencies, and
+verification evidence. It gives Kungfu a unit that one observer view can
+accept, move, inspect, or reject without treating a physical journal page or
+product session as the universal causal boundary. The prototype separates four
+authority layers
 \cite{kungfu2026episode}:
 
 \begin{enumerate}[leftmargin=*]
@@ -115,10 +123,10 @@ native upgrade fault campaign remain separate stages.
 
 \subsection{KFD-4 implementation map}
 
-Table~\ref{tab:kfd4-map} distinguishes landed evidence from the remaining
-observer-view work. Observer incarnation and continuity are refinements of the
-current KFD-4 interpretation, not new claims that its published schema already
-requires these exact fields.
+Table~\ref{tab:kfd4-map} distinguishes the generic KFD-4 obligation, its current
+Kungfu realization, and the remaining observer-view work. Observer incarnation
+and continuity are refinements of the current KFD-4 interpretation, not claims
+that its published schema already requires these exact fields.
 
 \begin{table}[ht]
 \centering
