@@ -1,0 +1,39 @@
+lockfileVersion: '9.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+importers:
+
+  .:
+    devDependencies:
+      '@kungfu-tech/buildchain':
+        specifier: 3.0.4-alpha.5
+        version: 3.0.4-alpha.5
+
+packages:
+
+  '@kungfu-tech/buildchain@3.0.4-alpha.5':
+    resolution: {integrity: sha512-yd0PzGSKL/CUDGXIqI7K+mxsmkpWuCuNmoP6k4fUzdWo6UZDYiZslrYerxou86/MZ79098z9bBax9eeXbmnjVA==}
+    engines: {node: '>=22.14.0'}
+    hasBin: true
+
+  '@kungfu-tech/kfd@1.0.0-alpha.47':
+    resolution: {integrity: sha512-tFyFev5UKm2snujWB0FXwHkwLpKhWxmE16MPjn1zSyl0X/y7QTERG7oCL0TIBuMpKC20QnNi6r0oVKRawyQ7fA==}
+    hasBin: true
+
+  smol-toml@1.7.0:
+    resolution: {integrity: sha512-aqVvWoyO21L23mb+drl4RmMXbf6N7FdHjAhTRA9ZBL7apWBgfWC16KjrASI+1p9GAroljyMHj6fK67i0UiTNvQ==}
+    engines: {node: '>= 18'}
+
+snapshots:
+
+  '@kungfu-tech/buildchain@3.0.4-alpha.5':
+    dependencies:
+      '@kungfu-tech/kfd': 1.0.0-alpha.47
+      smol-toml: 1.7.0
+
+  '@kungfu-tech/kfd@1.0.0-alpha.47': {}
+
+  smol-toml@1.7.0: {}

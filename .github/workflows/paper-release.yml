@@ -1,35 +1,35 @@
 name: Paper Release
 
 on:
+  workflow_dispatch:
   push:
     branches:
-      - "alpha/v*/v*.*"
-      - "release/v*/v*.*"
-  workflow_dispatch:
-    inputs:
-      buildchain-ref:
-        description: "Temporary Buildchain runtime ref for trusted manual validation"
-        required: false
-        default: ""
+      - "alpha/**"
+      - "release/**"
+
+permissions:
+  contents: read
 
 jobs:
   paper-release:
-    uses: kungfu-systems/buildchain/.github/workflows/paper-release-sealed.yml@v2-alpha
+    uses: kungfu-systems/buildchain/.github/workflows/paper-release-sealed.yml@0e28a607477a3dab6824bbe1bd990b567bbb6288
     permissions:
       actions: read
       checks: write
-      contents: write
+      contents: read
       id-token: write
       issues: write
+      pull-requests: write
     with:
-      buildchain-ref: ${{ inputs.buildchain-ref || '' }}
+      buildchain-ref: 0e28a607477a3dab6824bbe1bd990b567bbb6288
       buildchain-contract-lock-path: .buildchain/contract-lock.json
       publisher-workflow-path: .github/workflows/paper-release.yml
       toolchain-type: config
       verify-command: make check
-      artifact-name: paper-observer-declared-timelines
-      artifact-paths: _build/observer-declared-timelines.pdf
-      github-release: true
-      release-passport-product-name: Observer-Declared Timelines
+      artifact-paths: "_build/observer-declared-timelines.pdf"
+      release-passport-product-name: "Observer-Declared Timelines for Real-World Agent Work"
     secrets:
-      BUILDCHAIN_PROMOTION_TOKEN: ${{ secrets.BUILDCHAIN_PROMOTION_TOKEN }}
+      KUNGFU_GOVERNANCE_AUDITOR_APP_PRIVATE_KEY: ${{ secrets.KUNGFU_GOVERNANCE_AUDITOR_APP_PRIVATE_KEY }}
+      BUILDCHAIN_GENERATED_WRITE_APP_CLIENT_ID: ${{ secrets.BUILDCHAIN_GENERATED_WRITE_APP_CLIENT_ID }}
+      BUILDCHAIN_GENERATED_WRITE_APP_PRIVATE_KEY: ${{ secrets.BUILDCHAIN_GENERATED_WRITE_APP_PRIVATE_KEY }}
+      BUILDCHAIN_GENERATED_WRITE_TOKEN: ${{ secrets.BUILDCHAIN_GENERATED_WRITE_TOKEN }}
