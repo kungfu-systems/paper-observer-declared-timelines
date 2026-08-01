@@ -55,6 +55,17 @@ npm Trusted Publishing must be configured against this repository and
 package-generation or publication transaction scripts; those mechanics remain
 owned by Buildchain.
 
+## Agent-native release propagation
+
+A successful alpha or release publication emits Buildchain propagation work
+units for the downstream sites declared in
+[`.buildchain/release-propagation.json`](.buildchain/release-propagation.json).
+Those work units are agent handoff records, not approval substitutes: the
+receiving agent must verify the npm integrity, exact source `gitHead`, Git tag,
+GitHub Release evidence, and downstream release lock before running the
+declared site update and readback commands. A missing or conflicting link keeps
+the work unit fail-closed.
+
 If a TeX toolchain is installed:
 
 ```sh
