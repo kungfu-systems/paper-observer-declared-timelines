@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "version": "0.1.0-alpha.10",
+  "channel": "alpha",
+  "source_sha": "a843cf3a918f8242436b9959eea17a6df090f702",
+  "release_sha": "a843cf3a918f8242436b9959eea17a6df090f702",
+  "target_ref": "alpha/v0/v0.1",
+  "release_material_sha": "a843cf3a918f8242436b9959eea17a6df090f702",
+  "publish_tooling_sha": "a843cf3a918f8242436b9959eea17a6df090f702",
+  "artifacts": [
+    {
+      "group": "node",
+      "kind": "npm",
+      "name": "@kungfu-tech/paper-observer-declared-timelines",
+      "ref": "0.1.0-alpha.10",
+      "digest": "sha512-1ur3APvMR/anvcGBDuMCV41O284JUsC1LVXP/OSaixpWZSoShXn6W5ns5VQ4cn5QUppt32hBEZ08NTpc/687Tg=="
+    }
+  ]
+}

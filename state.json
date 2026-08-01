@@ -16,14 +16,27 @@
   "state_ref": "buildchain/release-state/0-1-0-alpha-10",
   "state_path": "/home/runner/work/paper-observer-declared-timelines/paper-observer-declared-timelines/.buildchain/release-state/v0.1.0-alpha.10.json",
   "evidence_path": "/home/runner/work/paper-observer-declared-timelines/paper-observer-declared-timelines/.buildchain/release-evidence/v0.1.0-alpha.10/evidence.json",
-  "state": "publishing",
-  "previous_state": "sealed",
+  "state": "published",
+  "previous_state": "publishing",
   "actor": "dongkeren",
   "run_id": "30700216961",
   "superseded_by": "",
   "failure": "",
-  "artifacts": [],
-  "evidence": [],
+  "artifacts": [
+    {
+      "group": "node",
+      "kind": "npm",
+      "name": "@kungfu-tech/paper-observer-declared-timelines",
+      "ref": "0.1.0-alpha.10",
+      "digest": "sha512-1ur3APvMR/anvcGBDuMCV41O284JUsC1LVXP/OSaixpWZSoShXn6W5ns5VQ4cn5QUppt32hBEZ08NTpc/687Tg==",
+      "role": "",
+      "required": true
+    }
+  ],
+  "evidence": [
+    ".buildchain/release-evidence/v0.1.0-alpha.10/evidence.json",
+    ".buildchain/release-evidence/v0.1.0-alpha.10/dist-tag-evidence.json"
+  ],
   "sealed_bundle": {
     "schemaVersion": 1,
     "contract": "kungfu-buildchain-publication-sealed-bundle",
@@ -345,9 +358,15 @@
     "durablePath": "sealed-bundle/sha256/a86c496c3c141a8ae03adc9528a200683492748fbdfd56e4d4de65adc9ffc769",
     "resumeCommand": "buildchain paper resume --version \"0.1.0-alpha.10\" --state-ref \"refs/heads/buildchain/release-state/0-1-0-alpha-10\""
   },
-  "publication_state": "sealed",
-  "milestones": {},
+  "publication_state": "package-published",
+  "milestones": {
+    "package_published": {
+      "status": "complete",
+      "artifactCount": 1,
+      "sealedBundleRoot": "sha256:a86c496c3c141a8ae03adc9528a200683492748fbdfd56e4d4de65adc9ffc769"
+    }
+  },
   "resume_command": "buildchain paper resume --version \"0.1.0-alpha.10\" --state-ref \"refs/heads/buildchain/release-state/0-1-0-alpha-10\"",
   "created_at": "2026-08-01T12:44:53.359Z",
-  "updated_at": "2026-08-01T12:45:02.647Z"
+  "updated_at": "2026-08-01T12:45:11.698Z"
 }
