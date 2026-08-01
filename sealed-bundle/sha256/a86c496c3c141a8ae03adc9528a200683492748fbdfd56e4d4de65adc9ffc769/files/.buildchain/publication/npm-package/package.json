@@ -1,0 +1,44 @@
+{
+  "name": "@kungfu-tech/paper-observer-declared-timelines",
+  "version": "0.1.0-alpha.10",
+  "private": false,
+  "description": "Observer-Declared Timelines for Real-World Agent Work publication artifact package.",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kungfu-systems/paper-observer-declared-timelines.git"
+  },
+  "gitHead": "a843cf3a918f8242436b9959eea17a6df090f702",
+  "type": "module",
+  "files": [
+    ".buildchain/publication/",
+    "buildchain-publication-package.json",
+    "_build/observer-declared-timelines.pdf",
+    "_build/observer-declared-timelines.pdf",
+    "_build/observer-declared-timelines.pdf",
+    "README.md",
+    "docs/MAP.md"
+  ],
+  "exports": {
+    "./package.json": "./package.json",
+    "./publication-artifact.json": "./.buildchain/publication/publication-artifact.json",
+    "./publication-artifact-passport.json": "./.buildchain/publication/publication-artifact-passport.json",
+    "./publication-registry.json": "./.buildchain/publication/publication-registry.json"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "buildchain": {
+    "contract": "kungfu-buildchain-publication-npm-package",
+    "publicationManifest": ".buildchain/publication/publication-artifact.json",
+    "publicationPassport": ".buildchain/publication/publication-artifact-passport.json",
+    "publicationRegistry": ".buildchain/publication/publication-registry.json",
+    "publicationRegistryHydration": ".buildchain/publication/registry-hydration.json",
+    "primaryArtifact": "_build/observer-declared-timelines.pdf",
+    "sourceBundle": ".buildchain/publication/source.tar.gz",
+    "siteConsumers": [
+      "papers.libkungfu.dev"
+    ]
+  }
+}

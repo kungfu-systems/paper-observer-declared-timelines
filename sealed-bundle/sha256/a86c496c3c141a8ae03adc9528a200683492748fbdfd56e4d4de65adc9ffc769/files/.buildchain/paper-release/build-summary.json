@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "contract": "kungfu-buildchain-paper-release-build-summary",
+  "repository": "kungfu-systems/paper-observer-declared-timelines",
+  "sourceSha": "a843cf3a918f8242436b9959eea17a6df090f702",
+  "package": {
+    "name": "@kungfu-tech/paper-observer-declared-timelines",
+    "version": "0.1.0-alpha.10"
+  },
+  "reproducibility": {
+    "receiptPath": ".buildchain/publication/reproducibility-receipt.json",
+    "receiptDigest": "sha256:97b93e67b5349fde2b9d95f213cd5a10fce1e4577274985886ea75eae6b3c9e9",
+    "npmIntegrity": "sha512-1ur3APvMR/anvcGBDuMCV41O284JUsC1LVXP/OSaixpWZSoShXn6W5ns5VQ4cn5QUppt32hBEZ08NTpc/687Tg==",
+    "npmSha256": "0d01023ddc7e6c89ce86e6677645e446e299fbb4c79e602b112ecab9309f95ae"
+  },
+  "publication": {
+    "manifestPath": ".buildchain/publication/publication-artifact.json",
+    "passportPath": ".buildchain/publication/publication-artifact-passport.json",
+    "registryPath": ".buildchain/publication/publication-registry.json",
+    "primaryArtifact": "_build/observer-declared-timelines.pdf"
+  },
+  "platforms": [
+    {
+      "id": "paper",
+      "manifestPath": ".buildchain/publication/publication-artifact.json"
+    }
+  ]
+}

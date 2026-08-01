@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 1,
+  "contract": "kungfu-buildchain-publication-registry-hydration",
+  "status": "hydrated",
+  "authentication": "npm-registry-https-plus-package-integrity",
+  "registry": "https://registry.npmjs.org/",
+  "packageName": "@kungfu-tech/paper-observer-declared-timelines",
+  "currentVersion": "0.1.0-alpha.10",
+  "inputDir": ".buildchain/publication/registry-inputs",
+  "sources": [
+    {
+      "package": "@kungfu-tech/paper-observer-declared-timelines",
+      "version": "0.0.0-bootstrap.0",
+      "integrity": "sha512-232teYmftJRC2UGiY00OA4oo5ows1hEILbujhHkBW8mw5OqxPfBnkm5mth9MKSXnHEXWYHrm4e/oAMG9gOrb8A==",
+      "status": "registry-not-present"
+    },
+    {
+      "package": "@kungfu-tech/paper-observer-declared-timelines",
+      "version": "0.1.0-alpha.1",
+      "integrity": "sha512-0TjyzuTmhg6n8+lCv5LXXQERArcET38DX+VEn0OaHAUNrVgTmXvpKRiCuNmk3YxKPTY7AU5sOo3QeFOO6PO/YQ==",
+      "status": "accepted-input",
+      "registryPath": ".buildchain/publication/registry-inputs/0.1.0-alpha.1.json"
+    },
+    {
+      "package": "@kungfu-tech/paper-observer-declared-timelines",
+      "version": "0.1.0-alpha.2",
+      "integrity": "sha512-74+KU7S14MkWQiv2n5RXMmEewY4efD4WZJvQrqhqo2pjNfKI1eDOWrE0MzLQPPCgKSqYn1vonTGdMyJci7doeA==",
+      "status": "accepted-input",
+      "registryPath": ".buildchain/publication/registry-inputs/0.1.0-alpha.2.json"
+    },
+    {
+      "package": "@kungfu-tech/paper-observer-declared-timelines",
+      "version": "0.1.0-alpha.3",
+      "integrity": "sha512-K4/cNMikoW1n5fDf3x/GvoqXrR5vMkXHKe63ZU7t3VPGhLuSFVz6NuZEGqGIM5RW4N15tH2Up6YBxbmOGy7FXw==",
+      "status": "accepted-input",
+      "registryPath": ".buildchain/publication/registry-inputs/0.1.0-alpha.3.json"
+    },
+    {
+      "package": "@kungfu-tech/paper-observer-declared-timelines",
+      "version": "0.1.0-alpha.4",
+      "integrity": "sha512-o7CvlK7FNpZZBybbkAPVMR1EolMGijIiCOyqSUxsOR7DqAn8VeOXPFTWhzvcYd1jMNaP9KScqH9q53xY/f03hQ==",
+      "status": "accepted-input",
+      "registryPath": ".buildchain/publication/registry-inputs/0.1.0-alpha.4.json"
+    },
+    {
+      "package": "@kungfu-tech/paper-observer-declared-timelines",
+      "version": "0.1.0-alpha.5",
+      "integrity": "sha512-J2hg9hWsHSZCn2WIwk39YSP/gmqoq+fH2nhr4Rz9gNQMzHph80xkL9cE/5GUTCzDB3t3ux1orHAWF8gD7b2tEg==",
+      "status": "accepted-input",
+      "registryPath": ".buildchain/publication/registry-inputs/0.1.0-alpha.5.json"
+    },
+    {
+      "package": "@kungfu-tech/paper-observer-declared-timelines",
+      "version": "0.1.0-alpha.6",
+      "integrity": "sha512-7xYES/yaurXoSUKA+erh+pPxPLW+nKVll/sMzxtwB0HGRZ/Yr6EcLLYPB1wnDyt7Uyozmk5UEgjnw2kk/Xs8vQ==",
+      "status": "registry-not-present"
+    },
+    {
+      "package": "@kungfu-tech/paper-observer-declared-timelines",
+      "version": "0.1.0-alpha.7",
+      "integrity": "sha512-KNAlUQ+8FveZRY/wqi1yE5RR1GE516UvvisUMQ7mZWIOHXkMtb9etWdz9B0ygT+/8RDO6HR1yFT7QwMYFupO6w==",
+      "status": "accepted-input",
+      "registryPath": ".buildchain/publication/registry-inputs/0.1.0-alpha.7.json"
+    },
+    {
+      "package": "@kungfu-tech/paper-observer-declared-timelines",
+      "version": "0.1.0-alpha.8",
+      "integrity": "sha512-68ugGvrnutyprT6IY95ArUsLPDzOBFErliGSPR6rC68HJXJnUHNFl4f5e2V2hwloicuDesVSoJvByo42yf8oHQ==",
+      "status": "accepted-input",
+      "registryPath": ".buildchain/publication/registry-inputs/0.1.0-alpha.8.json"
+    },
+    {
+      "package": "@kungfu-tech/paper-observer-declared-timelines",
+      "version": "0.1.0-alpha.9",
+      "integrity": "sha512-uixVi6Vic6KILqQoiqisiFv2NOWkOoZrlEhrXSVBPBaMxkg5HtDVqJE0XYiiGz85LIbArQ+DRVKl/E3U/pmH+Q==",
+      "status": "accepted-input",
+      "registryPath": ".buildchain/publication/registry-inputs/0.1.0-alpha.9.json"
+    }
+  ]
+}

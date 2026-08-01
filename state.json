@@ -1,0 +1,353 @@
+{
+  "schema": 1,
+  "id": "4e71eca2975c5b9ee701d18e273a3a3458a38b4c538a111149da63c5a51afb85",
+  "repository": "kungfu-systems/paper-observer-declared-timelines",
+  "target_ref": "alpha/v0/v0.1",
+  "source_sha": "a843cf3a918f8242436b9959eea17a6df090f702",
+  "release_sha": "a843cf3a918f8242436b9959eea17a6df090f702",
+  "release_material_sha": "a843cf3a918f8242436b9959eea17a6df090f702",
+  "publish_tooling_sha": "a843cf3a918f8242436b9959eea17a6df090f702",
+  "version": "0.1.0-alpha.10",
+  "exact_tag": "v0.1.0-alpha.10",
+  "channel": "alpha",
+  "line": "v0.1",
+  "version_strategy": "",
+  "lifecycle_identity": "lifecycle.publish",
+  "state_ref": "buildchain/release-state/0-1-0-alpha-10",
+  "state_path": "/home/runner/work/paper-observer-declared-timelines/paper-observer-declared-timelines/.buildchain/release-state/v0.1.0-alpha.10.json",
+  "evidence_path": "/home/runner/work/paper-observer-declared-timelines/paper-observer-declared-timelines/.buildchain/release-evidence/v0.1.0-alpha.10/evidence.json",
+  "state": "sealed",
+  "previous_state": "prepared",
+  "actor": "dongkeren",
+  "run_id": "30700216961",
+  "superseded_by": "",
+  "failure": "",
+  "artifacts": [],
+  "evidence": [],
+  "sealed_bundle": {
+    "schemaVersion": 1,
+    "contract": "kungfu-buildchain-publication-sealed-bundle",
+    "root": "sha256:a86c496c3c141a8ae03adc9528a200683492748fbdfd56e4d4de65adc9ffc769",
+    "candidate": {
+      "schemaVersion": 1,
+      "contract": "kungfu-buildchain-publication-artifact-candidate",
+      "repository": "kungfu-systems/paper-observer-declared-timelines",
+      "sourceSha": "a843cf3a918f8242436b9959eea17a6df090f702",
+      "sourceTreeSha": "1a78d415574efbc4cabb562b4cfd36086976f325",
+      "runtimeSha": "bd588c402f7b601a8bcd7c9ec97d4a5cb2942103",
+      "manifestDigest": "97f6be63a53185a5a0272e659ab4a540427fbe8b936e6807fef1a253d97490d1",
+      "passportDigest": "35bb8d4d4641565a719c6d08dc7c2ca41f75f1d05bec7d650dce1e9b947721f1",
+      "controllerReceiptDigest": "9561773ba0e0a0a682ceb5da8ef62c389ab2313187618192d3cfaed5d20042a9",
+      "files": [
+        {
+          "path": "_build/observer-declared-timelines.pdf",
+          "size": 377686,
+          "sha256": "ad9da56fa74019fff8d148a22aed20e37b54665a3a1b640cf610be568238f708"
+        },
+        {
+          "path": ".buildchain/paper-release/build-summary.json",
+          "size": 1176,
+          "sha256": "3672f970a0938ef4e1122ab910bf841a284567f31bee7326ae71493d15f24491"
+        },
+        {
+          "path": ".buildchain/paper-release/publish-required-artifacts.json",
+          "size": 391,
+          "sha256": "16988c26b15faaf7c24eadce9d77109922ab6486845d46c804b047cc654f6cec"
+        },
+        {
+          "path": ".buildchain/publication/npm-package/_build/observer-declared-timelines.pdf",
+          "size": 377686,
+          "sha256": "ad9da56fa74019fff8d148a22aed20e37b54665a3a1b640cf610be568238f708"
+        },
+        {
+          "path": ".buildchain/publication/npm-package/.buildchain/publication/publication-artifact-passport.json",
+          "size": 7311,
+          "sha256": "52530843a29656f2497e9106db76e9db32223169e2f6f0252585dc19c51894ec"
+        },
+        {
+          "path": ".buildchain/publication/npm-package/.buildchain/publication/publication-artifact.json",
+          "size": 7537,
+          "sha256": "7d833ddca69bd2f192b10af006b4d673a08d9d7a2b9a0e8033cbba5a536baac5"
+        },
+        {
+          "path": ".buildchain/publication/npm-package/.buildchain/publication/publication-registry.json",
+          "size": 27986,
+          "sha256": "61f0b0f0cf2f3435312a090777aced547c4d2498cba5f17b6e63acea241a2f14"
+        },
+        {
+          "path": ".buildchain/publication/npm-package/.buildchain/publication/registry-hydration.json",
+          "size": 3744,
+          "sha256": "b7b86acae6919ad05faaae1594cbd5372bb6eebed9fc082f69dc7952d83c7867"
+        },
+        {
+          "path": ".buildchain/publication/npm-package/.buildchain/publication/source.tar.gz",
+          "size": 25321,
+          "sha256": "c17ebbc2e13f28da6335320fb07c2568a60840e5811bfbb005cca2b5b2ccf91f"
+        },
+        {
+          "path": ".buildchain/publication/npm-package/buildchain-publication-package.json",
+          "size": 3116,
+          "sha256": "643e641ea0eec50f29b095e4461fd304192c9dce97e57042c858c542fa45e42d"
+        },
+        {
+          "path": ".buildchain/publication/npm-package/docs/MAP.md",
+          "size": 1199,
+          "sha256": "d91c6ff52c219217c6e6b1d9967edf8da2b7457e21cafed1dd88e658cdbf8d40"
+        },
+        {
+          "path": ".buildchain/publication/npm-package/package.json",
+          "size": 1766,
+          "sha256": "fe4e547983cff050017b5c0f9fb49189f2d627d4a9707afd658ae971f793c5f4"
+        },
+        {
+          "path": ".buildchain/publication/npm-package/README.md",
+          "size": 367,
+          "sha256": "51e5cc15d19e5940e76ba06cce22008e32641a055a5ee46867a12dba2ce2de9d"
+        },
+        {
+          "path": ".buildchain/publication/npm-tarball/kungfu-tech-paper-observer-declared-timelines-0.1.0-alpha.10.tgz",
+          "size": 406564,
+          "sha256": "0d01023ddc7e6c89ce86e6677645e446e299fbb4c79e602b112ecab9309f95ae"
+        },
+        {
+          "path": ".buildchain/publication/publication-artifact-passport.json",
+          "size": 7311,
+          "sha256": "52530843a29656f2497e9106db76e9db32223169e2f6f0252585dc19c51894ec"
+        },
+        {
+          "path": ".buildchain/publication/publication-artifact.json",
+          "size": 7537,
+          "sha256": "7d833ddca69bd2f192b10af006b4d673a08d9d7a2b9a0e8033cbba5a536baac5"
+        },
+        {
+          "path": ".buildchain/publication/publication-registry.json",
+          "size": 27986,
+          "sha256": "61f0b0f0cf2f3435312a090777aced547c4d2498cba5f17b6e63acea241a2f14"
+        },
+        {
+          "path": ".buildchain/publication/registry-hydration.json",
+          "size": 3744,
+          "sha256": "b7b86acae6919ad05faaae1594cbd5372bb6eebed9fc082f69dc7952d83c7867"
+        },
+        {
+          "path": ".buildchain/publication/registry-inputs/0.1.0-alpha.1.json",
+          "size": 3807,
+          "sha256": "1e27562fcfb5075eb3c5c8a3265f49c41c548d51ce4dffd4d804cb3bed68ecb6"
+        },
+        {
+          "path": ".buildchain/publication/registry-inputs/0.1.0-alpha.2.json",
+          "size": 3807,
+          "sha256": "80a7e31e40c99934e9a2bbc460a2e9cb12a1123c4ac96939a8ee1d91ce1d2262"
+        },
+        {
+          "path": ".buildchain/publication/registry-inputs/0.1.0-alpha.3.json",
+          "size": 3853,
+          "sha256": "0b6560f88a9de49069f33870a94a87f2c4ef92486596337f3d4902017abfac4c"
+        },
+        {
+          "path": ".buildchain/publication/registry-inputs/0.1.0-alpha.4.json",
+          "size": 3853,
+          "sha256": "ec066a2812071954366f3121046f4594a9a2bebd8da66e499ec4192ebde540df"
+        },
+        {
+          "path": ".buildchain/publication/registry-inputs/0.1.0-alpha.5.json",
+          "size": 15898,
+          "sha256": "aa17bcc4b9f8b216aa296daa547308f7729826dc4d8d123a8c2e5d24ff56aef3"
+        },
+        {
+          "path": ".buildchain/publication/registry-inputs/0.1.0-alpha.7.json",
+          "size": 3910,
+          "sha256": "54e8da06cd6fb4abb2746a3b21b9747403c5f65f54971941b998f3206c28636b"
+        },
+        {
+          "path": ".buildchain/publication/registry-inputs/0.1.0-alpha.8.json",
+          "size": 3910,
+          "sha256": "a552358d69f2c805a3ae98b3dc8c2d9a8108406cd48ceeb6ceebc32efa13fb69"
+        },
+        {
+          "path": ".buildchain/publication/registry-inputs/0.1.0-alpha.9.json",
+          "size": 3910,
+          "sha256": "01107de39b46837e4f5758a9e4a5cb549d3a247a2e96e31d2ee68f70c779b33c"
+        },
+        {
+          "path": ".buildchain/publication/reproducibility-receipt.json",
+          "size": 19633,
+          "sha256": "a9211305889052b881e95838c4eb9bf3cad53b9ed91239643e9f4cdb7a41d638"
+        },
+        {
+          "path": ".buildchain/publication/source.tar.gz",
+          "size": 25321,
+          "sha256": "c17ebbc2e13f28da6335320fb07c2568a60840e5811bfbb005cca2b5b2ccf91f"
+        }
+      ],
+      "candidateDigest": "a86c496c3c141a8ae03adc9528a200683492748fbdfd56e4d4de65adc9ffc769"
+    },
+    "files": [
+      {
+        "path": "_build/observer-declared-timelines.pdf",
+        "size": 377686,
+        "sha256": "ad9da56fa74019fff8d148a22aed20e37b54665a3a1b640cf610be568238f708"
+      },
+      {
+        "path": ".buildchain/paper-release/build-summary.json",
+        "size": 1176,
+        "sha256": "3672f970a0938ef4e1122ab910bf841a284567f31bee7326ae71493d15f24491"
+      },
+      {
+        "path": ".buildchain/paper-release/publish-required-artifacts.json",
+        "size": 391,
+        "sha256": "16988c26b15faaf7c24eadce9d77109922ab6486845d46c804b047cc654f6cec"
+      },
+      {
+        "path": ".buildchain/publication/npm-package/_build/observer-declared-timelines.pdf",
+        "size": 377686,
+        "sha256": "ad9da56fa74019fff8d148a22aed20e37b54665a3a1b640cf610be568238f708"
+      },
+      {
+        "path": ".buildchain/publication/npm-package/.buildchain/publication/publication-artifact-passport.json",
+        "size": 7311,
+        "sha256": "52530843a29656f2497e9106db76e9db32223169e2f6f0252585dc19c51894ec"
+      },
+      {
+        "path": ".buildchain/publication/npm-package/.buildchain/publication/publication-artifact.json",
+        "size": 7537,
+        "sha256": "7d833ddca69bd2f192b10af006b4d673a08d9d7a2b9a0e8033cbba5a536baac5"
+      },
+      {
+        "path": ".buildchain/publication/npm-package/.buildchain/publication/publication-registry.json",
+        "size": 27986,
+        "sha256": "61f0b0f0cf2f3435312a090777aced547c4d2498cba5f17b6e63acea241a2f14"
+      },
+      {
+        "path": ".buildchain/publication/npm-package/.buildchain/publication/registry-hydration.json",
+        "size": 3744,
+        "sha256": "b7b86acae6919ad05faaae1594cbd5372bb6eebed9fc082f69dc7952d83c7867"
+      },
+      {
+        "path": ".buildchain/publication/npm-package/.buildchain/publication/source.tar.gz",
+        "size": 25321,
+        "sha256": "c17ebbc2e13f28da6335320fb07c2568a60840e5811bfbb005cca2b5b2ccf91f"
+      },
+      {
+        "path": ".buildchain/publication/npm-package/buildchain-publication-package.json",
+        "size": 3116,
+        "sha256": "643e641ea0eec50f29b095e4461fd304192c9dce97e57042c858c542fa45e42d"
+      },
+      {
+        "path": ".buildchain/publication/npm-package/docs/MAP.md",
+        "size": 1199,
+        "sha256": "d91c6ff52c219217c6e6b1d9967edf8da2b7457e21cafed1dd88e658cdbf8d40"
+      },
+      {
+        "path": ".buildchain/publication/npm-package/package.json",
+        "size": 1766,
+        "sha256": "fe4e547983cff050017b5c0f9fb49189f2d627d4a9707afd658ae971f793c5f4"
+      },
+      {
+        "path": ".buildchain/publication/npm-package/README.md",
+        "size": 367,
+        "sha256": "51e5cc15d19e5940e76ba06cce22008e32641a055a5ee46867a12dba2ce2de9d"
+      },
+      {
+        "path": ".buildchain/publication/npm-tarball/kungfu-tech-paper-observer-declared-timelines-0.1.0-alpha.10.tgz",
+        "size": 406564,
+        "sha256": "0d01023ddc7e6c89ce86e6677645e446e299fbb4c79e602b112ecab9309f95ae"
+      },
+      {
+        "path": ".buildchain/publication/publication-artifact-passport.json",
+        "size": 7311,
+        "sha256": "52530843a29656f2497e9106db76e9db32223169e2f6f0252585dc19c51894ec"
+      },
+      {
+        "path": ".buildchain/publication/publication-artifact.json",
+        "size": 7537,
+        "sha256": "7d833ddca69bd2f192b10af006b4d673a08d9d7a2b9a0e8033cbba5a536baac5"
+      },
+      {
+        "path": ".buildchain/publication/publication-registry.json",
+        "size": 27986,
+        "sha256": "61f0b0f0cf2f3435312a090777aced547c4d2498cba5f17b6e63acea241a2f14"
+      },
+      {
+        "path": ".buildchain/publication/registry-hydration.json",
+        "size": 3744,
+        "sha256": "b7b86acae6919ad05faaae1594cbd5372bb6eebed9fc082f69dc7952d83c7867"
+      },
+      {
+        "path": ".buildchain/publication/registry-inputs/0.1.0-alpha.1.json",
+        "size": 3807,
+        "sha256": "1e27562fcfb5075eb3c5c8a3265f49c41c548d51ce4dffd4d804cb3bed68ecb6"
+      },
+      {
+        "path": ".buildchain/publication/registry-inputs/0.1.0-alpha.2.json",
+        "size": 3807,
+        "sha256": "80a7e31e40c99934e9a2bbc460a2e9cb12a1123c4ac96939a8ee1d91ce1d2262"
+      },
+      {
+        "path": ".buildchain/publication/registry-inputs/0.1.0-alpha.3.json",
+        "size": 3853,
+        "sha256": "0b6560f88a9de49069f33870a94a87f2c4ef92486596337f3d4902017abfac4c"
+      },
+      {
+        "path": ".buildchain/publication/registry-inputs/0.1.0-alpha.4.json",
+        "size": 3853,
+        "sha256": "ec066a2812071954366f3121046f4594a9a2bebd8da66e499ec4192ebde540df"
+      },
+      {
+        "path": ".buildchain/publication/registry-inputs/0.1.0-alpha.5.json",
+        "size": 15898,
+        "sha256": "aa17bcc4b9f8b216aa296daa547308f7729826dc4d8d123a8c2e5d24ff56aef3"
+      },
+      {
+        "path": ".buildchain/publication/registry-inputs/0.1.0-alpha.7.json",
+        "size": 3910,
+        "sha256": "54e8da06cd6fb4abb2746a3b21b9747403c5f65f54971941b998f3206c28636b"
+      },
+      {
+        "path": ".buildchain/publication/registry-inputs/0.1.0-alpha.8.json",
+        "size": 3910,
+        "sha256": "a552358d69f2c805a3ae98b3dc8c2d9a8108406cd48ceeb6ceebc32efa13fb69"
+      },
+      {
+        "path": ".buildchain/publication/registry-inputs/0.1.0-alpha.9.json",
+        "size": 3910,
+        "sha256": "01107de39b46837e4f5758a9e4a5cb549d3a247a2e96e31d2ee68f70c779b33c"
+      },
+      {
+        "path": ".buildchain/publication/reproducibility-receipt.json",
+        "size": 19633,
+        "sha256": "a9211305889052b881e95838c4eb9bf3cad53b9ed91239643e9f4cdb7a41d638"
+      },
+      {
+        "path": ".buildchain/publication/source.tar.gz",
+        "size": 25321,
+        "sha256": "c17ebbc2e13f28da6335320fb07c2568a60840e5811bfbb005cca2b5b2ccf91f"
+      }
+    ],
+    "npm": {
+      "name": "@kungfu-tech/paper-observer-declared-timelines",
+      "version": "0.1.0-alpha.10",
+      "path": ".buildchain/publication/npm-tarball/kungfu-tech-paper-observer-declared-timelines-0.1.0-alpha.10.tgz",
+      "size": 406564,
+      "sha256": "0d01023ddc7e6c89ce86e6677645e446e299fbb4c79e602b112ecab9309f95ae",
+      "integrity": "sha512-1ur3APvMR/anvcGBDuMCV41O284JUsC1LVXP/OSaixpWZSoShXn6W5ns5VQ4cn5QUppt32hBEZ08NTpc/687Tg=="
+    },
+    "releaseAssets": [
+      {
+        "path": "_build/observer-declared-timelines.pdf",
+        "size": 377686,
+        "sha256": "ad9da56fa74019fff8d148a22aed20e37b54665a3a1b640cf610be568238f708"
+      }
+    ],
+    "completion": {
+      "githubReleaseRequired": true
+    },
+    "durablePath": "sealed-bundle/sha256/a86c496c3c141a8ae03adc9528a200683492748fbdfd56e4d4de65adc9ffc769",
+    "resumeCommand": "buildchain paper resume --version \"0.1.0-alpha.10\" --state-ref \"refs/heads/buildchain/release-state/0-1-0-alpha-10\""
+  },
+  "publication_state": "sealed",
+  "milestones": {},
+  "resume_command": "buildchain paper resume --version \"0.1.0-alpha.10\" --state-ref \"refs/heads/buildchain/release-state/0-1-0-alpha-10\"",
+  "created_at": "2026-08-01T12:44:53.359Z",
+  "updated_at": "2026-08-01T12:44:53.359Z"
+}
